@@ -999,159 +999,310 @@ create table indicator_data_1min(timestamp_of_data_accessed varchar,
 		range_10_pct number,
 		range_20_pct number,
 		range_50_pct number,
-		------------------- to do --------------------------------
-		upper_arrow_10 number,
-		upper_arrow_20 number,
-		upper_arrow_50 number,
-		lower_arrow_10 number,
-		lower_arrow_20 number,
-		lower_arrow_50 number);
+			-------------upper... from high price
+		upper_arrow_10_slope number,
+		upper_arrow_10_predicted number,
 
-create table indicator_data_5min(timestamp_of_data_accessed varchar,
+		upper_arrow_20_slope number,
+		upper_arrow_20_predicted number,
+
+		upper_arrow_50_slope number,		
+		upper_arrow_50_predicted number,
+			-----------lower... form low price
+		lower_arrow_10_slope number,
+		lower_arrow_10_predicted number,
+
+		lower_arrow_20_slope number,
+		lower_arrow_20_predicted number,
+
+		lower_arrow_50_slope number
+		lower_arrow_50_predicted number);
+
+create table indicator_data_1min(timestamp_of_data_accessed varchar,
 		exchange varchar,
 		symbol varchar,
+		ltp_or_close_price number,
 		sma_50 number,
+		-- sma_50_pct = (ltp_or_close_price / sma_50 ) - 1
+		sma_50_pct number,
 		sma_100 number,
+		sma_100_pct number,
 		sma_200 number,
+		sma_200_pct number,
 		r1 number,
+		r1_pct number,
 		r2 number,
+		r2_pct number,
 		r3 number,
+		r3_pct number,
 		s1 number,
+		s1_pct number,
 		s2 number,
+		s2_pct number,
 		s3 number,
+		s3_pct number,
 		atr number,
-		range_10 number,
-		range_20 number,
-		range_50 number,
-		upper_arrow_10 number,
-		upper_arrow_20 number,
-		upper_arrow_50 number,
-		lower_arrow_10 number,
-		lower_arrow_20 number,
-		lower_arrow_50 number);
+		atr_pct number,
+		range_10_pct number,
+		range_20_pct number,
+		range_50_pct number,
+			-------------upper... from high price
+		upper_arrow_10_slope number,
+		upper_arrow_10_predicted number,
 
-create table indicator_data_15min(timestamp_of_data_accessed varchar,
+		upper_arrow_20_slope number,
+		upper_arrow_20_predicted number,
+
+		upper_arrow_50_slope number,		
+		upper_arrow_50_predicted number,
+			-----------lower... form low price
+		lower_arrow_10_slope number,
+		lower_arrow_10_predicted number,
+
+		lower_arrow_20_slope number,
+		lower_arrow_20_predicted number,
+
+		lower_arrow_50_slope number
+		lower_arrow_50_predicted number);
+
+create table indicator_data_1min(timestamp_of_data_accessed varchar,
 		exchange varchar,
 		symbol varchar,
-		-- automatic
+		ltp_or_close_price number,
 		sma_50 number,
+		-- sma_50_pct = (ltp_or_close_price / sma_50 ) - 1
+		sma_50_pct number,
 		sma_100 number,
+		sma_100_pct number,
 		sma_200 number,
-		--input manually
+		sma_200_pct number,
 		r1 number,
+		r1_pct number,
 		r2 number,
+		r2_pct number,
 		r3 number,
+		r3_pct number,
 		s1 number,
+		s1_pct number,
 		s2 number,
+		s2_pct number,
 		s3 number,
+		s3_pct number,
 		atr number,
-		--automatic
-		range_10 number,
-		range_20 number,
-		range_50 number,
-		upper_arrow_10 number,
-		upper_arrow_20 number,
-		upper_arrow_50 number,
-		lower_arrow_10 number,
-		lower_arrow_20 number,
-		lower_arrow_50 number);
+		atr_pct number,
+		range_10_pct number,
+		range_20_pct number,
+		range_50_pct number,
+			-------------upper... from high price
+		upper_arrow_10_slope number,
+		upper_arrow_10_predicted number,
+
+		upper_arrow_20_slope number,
+		upper_arrow_20_predicted number,
+
+		upper_arrow_50_slope number,		
+		upper_arrow_50_predicted number,
+			-----------lower... form low price
+		lower_arrow_10_slope number,
+		lower_arrow_10_predicted number,
+
+		lower_arrow_20_slope number,
+		lower_arrow_20_predicted number,
+
+		lower_arrow_50_slope number
+		lower_arrow_50_predicted number);
 
 
-create table indicator_data_60min(timestamp_of_data_accessed varchar,
+create table indicator_data_1min(timestamp_of_data_accessed varchar,
 		exchange varchar,
 		symbol varchar,
+		ltp_or_close_price number,
 		sma_50 number,
+		-- sma_50_pct = (ltp_or_close_price / sma_50 ) - 1
+		sma_50_pct number,
 		sma_100 number,
+		sma_100_pct number,
 		sma_200 number,
+		sma_200_pct number,
 		r1 number,
+		r1_pct number,
 		r2 number,
+		r2_pct number,
 		r3 number,
+		r3_pct number,
 		s1 number,
+		s1_pct number,
 		s2 number,
+		s2_pct number,
 		s3 number,
+		s3_pct number,
 		atr number,
-		range_10 number,
-		range_20 number,
-		range_50 number,
-		upper_arrow_10 number,
-		upper_arrow_20 number,
-		upper_arrow_50 number,
-		lower_arrow_10 number,
-		lower_arrow_20 number,
-		lower_arrow_50 number);
+		atr_pct number,
+		range_10_pct number,
+		range_20_pct number,
+		range_50_pct number,
+			-------------upper... from high price
+		upper_arrow_10_slope number,
+		upper_arrow_10_predicted number,
+
+		upper_arrow_20_slope number,
+		upper_arrow_20_predicted number,
+
+		upper_arrow_50_slope number,		
+		upper_arrow_50_predicted number,
+			-----------lower... form low price
+		lower_arrow_10_slope number,
+		lower_arrow_10_predicted number,
+
+		lower_arrow_20_slope number,
+		lower_arrow_20_predicted number,
+
+		lower_arrow_50_slope number
+		lower_arrow_50_predicted number);
 
 
-
-create table indicator_data_daily(timestamp_of_data_accessed varchar,
+create table indicator_data_1min(timestamp_of_data_accessed varchar,
 		exchange varchar,
 		symbol varchar,
+		ltp_or_close_price number,
 		sma_50 number,
+		-- sma_50_pct = (ltp_or_close_price / sma_50 ) - 1
+		sma_50_pct number,
 		sma_100 number,
+		sma_100_pct number,
 		sma_200 number,
+		sma_200_pct number,
 		r1 number,
+		r1_pct number,
 		r2 number,
+		r2_pct number,
 		r3 number,
+		r3_pct number,
 		s1 number,
+		s1_pct number,
 		s2 number,
+		s2_pct number,
 		s3 number,
+		s3_pct number,
 		atr number,
-		range_10 number,
-		range_20 number,
-		range_50 number,
-		upper_arrow_10 number,
-		upper_arrow_20 number,
-		upper_arrow_50 number,
-		lower_arrow_10 number,
-		lower_arrow_20 number,
-		lower_arrow_50 number);
+		atr_pct number,
+		range_10_pct number,
+		range_20_pct number,
+		range_50_pct number,
+			-------------upper... from high price
+		upper_arrow_10_slope number,
+		upper_arrow_10_predicted number,
+
+		upper_arrow_20_slope number,
+		upper_arrow_20_predicted number,
+
+		upper_arrow_50_slope number,		
+		upper_arrow_50_predicted number,
+			-----------lower... form low price
+		lower_arrow_10_slope number,
+		lower_arrow_10_predicted number,
+
+		lower_arrow_20_slope number,
+		lower_arrow_20_predicted number,
+
+		lower_arrow_50_slope number
+		lower_arrow_50_predicted number);
 
 
 
-create table indicator_data_weekly(timestamp_of_data_accessed varchar,
+create table indicator_data_1min(timestamp_of_data_accessed varchar,
 		exchange varchar,
 		symbol varchar,
+		ltp_or_close_price number,
 		sma_50 number,
+		-- sma_50_pct = (ltp_or_close_price / sma_50 ) - 1
+		sma_50_pct number,
 		sma_100 number,
+		sma_100_pct number,
 		sma_200 number,
+		sma_200_pct number,
 		r1 number,
+		r1_pct number,
 		r2 number,
+		r2_pct number,
 		r3 number,
+		r3_pct number,
 		s1 number,
+		s1_pct number,
 		s2 number,
+		s2_pct number,
 		s3 number,
+		s3_pct number,
 		atr number,
-		range_10 number,
-		range_20 number,
-		range_50 number,
-		upper_arrow_10 number,
-		upper_arrow_20 number,
-		upper_arrow_50 number,
-		lower_arrow_10 number,
-		lower_arrow_20 number,
-		lower_arrow_50 number);
+		atr_pct number,
+		range_10_pct number,
+		range_20_pct number,
+		range_50_pct number,
+			-------------upper... from high price
+		upper_arrow_10_slope number,
+		upper_arrow_10_predicted number,
 
-create table indicator_data_monthly(timestamp_of_data_accessed varchar,
+		upper_arrow_20_slope number,
+		upper_arrow_20_predicted number,
+
+		upper_arrow_50_slope number,		
+		upper_arrow_50_predicted number,
+			-----------lower... form low price
+		lower_arrow_10_slope number,
+		lower_arrow_10_predicted number,
+
+		lower_arrow_20_slope number,
+		lower_arrow_20_predicted number,
+
+		lower_arrow_50_slope number
+		lower_arrow_50_predicted number);
+
+create table indicator_data_1min(timestamp_of_data_accessed varchar,
 		exchange varchar,
 		symbol varchar,
+		ltp_or_close_price number,
 		sma_50 number,
+		-- sma_50_pct = (ltp_or_close_price / sma_50 ) - 1
+		sma_50_pct number,
 		sma_100 number,
+		sma_100_pct number,
 		sma_200 number,
+		sma_200_pct number,
 		r1 number,
+		r1_pct number,
 		r2 number,
+		r2_pct number,
 		r3 number,
+		r3_pct number,
 		s1 number,
+		s1_pct number,
 		s2 number,
+		s2_pct number,
 		s3 number,
+		s3_pct number,
 		atr number,
-		range_10 number,
-		range_20 number,
-		range_50 number,
-		upper_arrow_10 number,
-		upper_arrow_20 number,
-		upper_arrow_50 number,
-		lower_arrow_10 number,
-		lower_arrow_20 number,
-		lower_arrow_50 number);
+		atr_pct number,
+		range_10_pct number,
+		range_20_pct number,
+		range_50_pct number,
+			-------------upper... from high price
+		upper_arrow_10_slope number,
+		upper_arrow_10_predicted number,
+
+		upper_arrow_20_slope number,
+		upper_arrow_20_predicted number,
+
+		upper_arrow_50_slope number,		
+		upper_arrow_50_predicted number,
+			-----------lower... form low price
+		lower_arrow_10_slope number,
+		lower_arrow_10_predicted number,
+
+		lower_arrow_20_slope number,
+		lower_arrow_20_predicted number,
+
+		lower_arrow_50_slope number
+		lower_arrow_50_predicted number);
 
 
 
