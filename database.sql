@@ -5,7 +5,7 @@ create table profile(timestamp_of_data_accessed varchar,
 			 name varchar,
 			 email varchar,
 			 phone number,
-			 exhange_enabled varchar,
+			 exchange_enabled varchar,
 			 product_enabled varchar);
 
 create table balance(timestamp_of_data_accessed varchar,
@@ -563,12 +563,606 @@ create table intraday_trade_methology (timestamp_of_data_accessed varchar,
         is_only_trade_in_nifty_trend varchar,
  );
 
+
+create table instruments(timestamp_of_data_accessed varchar,
+		instrument_token number,
+		exchange_token number,
+		exchange varchar,
+		tradingsymbol number,
+		name varchar,
+		last_price number,
+		expiry number,
+
+		strike varchar,
+		tick_size number,
+		lot_size number,
+		instrument_type varchar,
+		segment varchar,
+		
+		upstox_kiteconnect varchar);
+
+create table instruments_details(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		sector varchar,
+		industry varchar,
+		group varchar,
+		--True or False
+		nifty_50_group varchar,
+		nifty_100_group varchar,
+		nifty_200_group varchar,
+		nifty_500_group varchar,
+		nifty_bank_group varchar,
+		nifty_fo_stocks varchar,
+		nifty_next_50_group varchar,
+		nifty_midcap_50_group varchar);
+
+create table volatility(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		price number,
+		daily_volatility number,
+		anulised_volatilty number,
+		Client_Wise_Position_Limits number,
+		Market_Wide_Position_Limits	number,
+		Settlement_Price number);
+
+
+
+
+
+
+-- from manually or security_analysis
+create table whitelist(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		--exchange_symbol = exchange + '_' + symbol
+		exchange_symbol varchar,
+		monthly_trend varchar,
+		weekly_trend varchar,
+		daily_trend varchar,
+		60min_trend varchar,
+		group varchar,
+		price varchar,
+		sector varchar,
+		industry varchar,
+		mcap number,
+		volume number);
+
+-- from manually or security_analysis
+create table blacklist(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		--exchange_symbol = exchange + '_' + symbol
+		exchange_symbol varchar,
+		monthly_trend varchar,
+		weekly_trend varchar,
+		daily_trend varchar,
+		60min_trend varchar,
+		group varchar,
+		price number,
+		sector number,
+		industry number,
+		mcap number,
+		volume number);
+
+
+--watchlist = whitelist - blacklist
+create table watchlist(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		--exchange_symbol = exchange + '_' + symbol
+		exchange_symbol varchar,
+		monthly_trend varchar,
+		weekly_trend varchar,
+		daily_trend varchar,
+		60min_trend varchar,
+		group varchar,
+		price number,
+		sector number,
+		industry number,
+		mcap number,
+		volume number);
+
+create table monthly_signal(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		sma_50_signal varchar,
+		sma_100_signal varchar,
+		sma_200_signal varchar,
+		sma_final_signal varchar,
+
+		r1_signal varchar,
+		r2_signal varchar,
+		r3_signal varchar,
+		r_final_signal varchar,
+
+		s1_signal varchar,
+		s2_signal varchar,
+		s3_signal varchar,
+		s_final_signal varchar,
+
+		atr_signal varchar,
+
+
+		range_10_pct_signal varchar,
+		range_20_pct_signal varchar,
+		range_50_pct_signal varchar,
+		range_final_signal varchar,
+
+		upper_arrow_10_signal varchar,
+		upper_arrow_20_signal varchar,
+		upper_arrow_50_signal varchar,
+		upper_arrow_final_signal varchar,
+
+		lower_arrow_10_signal varchar,
+		lower_arrow_20_signal varchar,
+		lower_arrow_50_signal varchar
+		lower_arrow_final_signal varchar,
+		final_signal varchar
+		);
+
+create table weekly_signal(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		sma_50_signal varchar,
+		sma_100_signal varchar,
+		sma_200_signal varchar,
+		sma_final_signal varchar,
+
+		r1_signal varchar,
+		r2_signal varchar,
+		r3_signal varchar,
+		r_final_signal varchar,
+
+		s1_signal varchar,
+		s2_signal varchar,
+		s3_signal varchar,
+		s_final_signal varchar,
+
+		atr_signal varchar,
+
+
+		range_10_pct_signal varchar,
+		range_20_pct_signal varchar,
+		range_50_pct_signal varchar,
+		range_final_signal varchar,
+
+		upper_arrow_10_signal varchar,
+		upper_arrow_20_signal varchar,
+		upper_arrow_50_signal varchar,
+		upper_arrow_final_signal varchar,
+
+		lower_arrow_10_signal varchar,
+		lower_arrow_20_signal varchar,
+		lower_arrow_50_signal varchar
+		lower_arrow_final_signal varchar,
+		final_signal varchar
+		);
+
+
+create table daily_signal(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		sma_50_signal varchar,
+		sma_100_signal varchar,
+		sma_200_signal varchar,
+		sma_final_signal varchar,
+
+		r1_signal varchar,
+		r2_signal varchar,
+		r3_signal varchar,
+		r_final_signal varchar,
+
+		s1_signal varchar,
+		s2_signal varchar,
+		s3_signal varchar,
+		s_final_signal varchar,
+
+		atr_signal varchar,
+
+
+		range_10_pct_signal varchar,
+		range_20_pct_signal varchar,
+		range_50_pct_signal varchar,
+		range_final_signal varchar,
+
+		upper_arrow_10_signal varchar,
+		upper_arrow_20_signal varchar,
+		upper_arrow_50_signal varchar,
+		upper_arrow_final_signal varchar,
+
+		lower_arrow_10_signal varchar,
+		lower_arrow_20_signal varchar,
+		lower_arrow_50_signal varchar
+		lower_arrow_final_signal varchar,
+		final_signal varchar
+		);
+
+
+create table 60min_signal(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		sma_50_signal varchar,
+		sma_100_signal varchar,
+		sma_200_signal varchar,
+		sma_final_signal varchar,
+
+		r1_signal varchar,
+		r2_signal varchar,
+		r3_signal varchar,
+		r_final_signal varchar,
+
+		s1_signal varchar,
+		s2_signal varchar,
+		s3_signal varchar,
+		s_final_signal varchar,
+
+		atr_signal varchar,
+
+
+		range_10_pct_signal varchar,
+		range_20_pct_signal varchar,
+		range_50_pct_signal varchar,
+		range_final_signal varchar,
+
+		upper_arrow_10_signal varchar,
+		upper_arrow_20_signal varchar,
+		upper_arrow_50_signal varchar,
+		upper_arrow_final_signal varchar,
+
+		lower_arrow_10_signal varchar,
+		lower_arrow_20_signal varchar,
+		lower_arrow_50_signal varchar
+		lower_arrow_final_signal varchar,
+		final_signal varchar
+		);
+
+
+create table 15min_signal(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		sma_50_signal varchar,
+		sma_100_signal varchar,
+		sma_200_signal varchar,
+		sma_final_signal varchar,
+
+		r1_signal varchar,
+		r2_signal varchar,
+		r3_signal varchar,
+		r_final_signal varchar,
+
+		s1_signal varchar,
+		s2_signal varchar,
+		s3_signal varchar,
+		s_final_signal varchar,
+
+		atr_signal varchar,
+
+
+		range_10_pct_signal varchar,
+		range_20_pct_signal varchar,
+		range_50_pct_signal varchar,
+		range_final_signal varchar,
+
+		upper_arrow_10_signal varchar,
+		upper_arrow_20_signal varchar,
+		upper_arrow_50_signal varchar,
+		upper_arrow_final_signal varchar,
+
+		lower_arrow_10_signal varchar,
+		lower_arrow_20_signal varchar,
+		lower_arrow_50_signal varchar
+		lower_arrow_final_signal varchar,
+		final_signal varchar
+		);
+
+
+create table 5min_signal(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		sma_50_signal varchar,
+		sma_100_signal varchar,
+		sma_200_signal varchar,
+		sma_final_signal varchar,
+
+		r1_signal varchar,
+		r2_signal varchar,
+		r3_signal varchar,
+		r_final_signal varchar,
+
+		s1_signal varchar,
+		s2_signal varchar,
+		s3_signal varchar,
+		s_final_signal varchar,
+
+		atr_signal varchar,
+
+
+		range_10_pct_signal varchar,
+		range_20_pct_signal varchar,
+		range_50_pct_signal varchar,
+		range_final_signal varchar,
+
+		upper_arrow_10_signal varchar,
+		upper_arrow_20_signal varchar,
+		upper_arrow_50_signal varchar,
+		upper_arrow_final_signal varchar,
+
+		lower_arrow_10_signal varchar,
+		lower_arrow_20_signal varchar,
+		lower_arrow_50_signal varchar
+		lower_arrow_final_signal varchar,
+		final_signal varchar
+		);
+
+create table 1min_signal(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		sma_50_signal varchar,
+		sma_100_signal varchar,
+		sma_200_signal varchar,
+		sma_final_signal varchar,
+
+		r1_signal varchar,
+		r2_signal varchar,
+		r3_signal varchar,
+		r_final_signal varchar,
+
+		s1_signal varchar,
+		s2_signal varchar,
+		s3_signal varchar,
+		s_final_signal varchar,
+
+		atr_signal varchar,
+
+
+		range_10_pct_signal varchar,
+		range_20_pct_signal varchar,
+		range_50_pct_signal varchar,
+		range_final_signal varchar,
+
+		upper_arrow_10_signal varchar,
+		upper_arrow_20_signal varchar,
+		upper_arrow_50_signal varchar,
+		upper_arrow_final_signal varchar,
+
+		lower_arrow_10_signal varchar,
+		lower_arrow_20_signal varchar,
+		lower_arrow_50_signal varchar
+		lower_arrow_final_signal varchar,
+		final_signal varchar
+		);
+
+create table monthly_trend(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		-- bullish or bearish or sideways or unpredictable
+		trend varchar);
+create table weekly_trend(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		-- bullish or bearish or sideways or unpredictable
+		trend varchar);
+create table daily_trend(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		-- bullish or bearish or sideways or unpredictable
+		trend varchar);
+create table 60min_trend(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		-- bullish or bearish or sideways or unpredictable
+		trend varchar);
+create table 15min_trend(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		-- bullish or bearish or sideways or unpredictable
+		trend varchar);
+create table 5min_trend(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		-- bullish or bearish or sideways or unpredictable
+		trend varchar);
+create table 1min_trend(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		-- bullish or bearish or sideways or unpredictable
+		trend varchar);
+
+
+create table indicator_data_1min(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		ltp_or_close_price number,
+		sma_50 number,
+		-- sma_50_pct = (ltp_or_close_price / sma_50 ) - 1
+		sma_50_pct number,
+		sma_100 number,
+		sma_100_pct number,
+		sma_200 number,
+		sma_200_pct number,
+		r1 number,
+		r1_pct number,
+		r2 number,
+		r2_pct number,
+		r3 number,
+		r3_pct number,
+		s1 number,
+		s1_pct number,
+		s2 number,
+		s2_pct number,
+		s3 number,
+		s3_pct number,
+		atr number,
+		atr_pct number,
+		range_10_pct number,
+		range_20_pct number,
+		range_50_pct number,
+		------------------- to do --------------------------------
+		upper_arrow_10 number,
+		upper_arrow_20 number,
+		upper_arrow_50 number,
+		lower_arrow_10 number,
+		lower_arrow_20 number,
+		lower_arrow_50 number);
+
+create table indicator_data_5min(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		sma_50 number,
+		sma_100 number,
+		sma_200 number,
+		r1 number,
+		r2 number,
+		r3 number,
+		s1 number,
+		s2 number,
+		s3 number,
+		atr number,
+		range_10 number,
+		range_20 number,
+		range_50 number,
+		upper_arrow_10 number,
+		upper_arrow_20 number,
+		upper_arrow_50 number,
+		lower_arrow_10 number,
+		lower_arrow_20 number,
+		lower_arrow_50 number);
+
+create table indicator_data_15min(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		-- automatic
+		sma_50 number,
+		sma_100 number,
+		sma_200 number,
+		--input manually
+		r1 number,
+		r2 number,
+		r3 number,
+		s1 number,
+		s2 number,
+		s3 number,
+		atr number,
+		--automatic
+		range_10 number,
+		range_20 number,
+		range_50 number,
+		upper_arrow_10 number,
+		upper_arrow_20 number,
+		upper_arrow_50 number,
+		lower_arrow_10 number,
+		lower_arrow_20 number,
+		lower_arrow_50 number);
+
+
+create table indicator_data_60min(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		sma_50 number,
+		sma_100 number,
+		sma_200 number,
+		r1 number,
+		r2 number,
+		r3 number,
+		s1 number,
+		s2 number,
+		s3 number,
+		atr number,
+		range_10 number,
+		range_20 number,
+		range_50 number,
+		upper_arrow_10 number,
+		upper_arrow_20 number,
+		upper_arrow_50 number,
+		lower_arrow_10 number,
+		lower_arrow_20 number,
+		lower_arrow_50 number);
+
+
+
+create table indicator_data_daily(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		sma_50 number,
+		sma_100 number,
+		sma_200 number,
+		r1 number,
+		r2 number,
+		r3 number,
+		s1 number,
+		s2 number,
+		s3 number,
+		atr number,
+		range_10 number,
+		range_20 number,
+		range_50 number,
+		upper_arrow_10 number,
+		upper_arrow_20 number,
+		upper_arrow_50 number,
+		lower_arrow_10 number,
+		lower_arrow_20 number,
+		lower_arrow_50 number);
+
+
+
+create table indicator_data_weekly(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		sma_50 number,
+		sma_100 number,
+		sma_200 number,
+		r1 number,
+		r2 number,
+		r3 number,
+		s1 number,
+		s2 number,
+		s3 number,
+		atr number,
+		range_10 number,
+		range_20 number,
+		range_50 number,
+		upper_arrow_10 number,
+		upper_arrow_20 number,
+		upper_arrow_50 number,
+		lower_arrow_10 number,
+		lower_arrow_20 number,
+		lower_arrow_50 number);
+
+create table indicator_data_monthly(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		sma_50 number,
+		sma_100 number,
+		sma_200 number,
+		r1 number,
+		r2 number,
+		r3 number,
+		s1 number,
+		s2 number,
+		s3 number,
+		atr number,
+		range_10 number,
+		range_20 number,
+		range_50 number,
+		upper_arrow_10 number,
+		upper_arrow_20 number,
+		upper_arrow_50 number,
+		lower_arrow_10 number,
+		lower_arrow_20 number,
+		lower_arrow_50 number);
+
+
+
 create table signals(timestamp_of_data_accessed varchar,
 		exchange varchar,
 		symbol varchar,
 		price varchar,
 		atr number,
+		--sma50 sma100 sma100 r1 r2 r3 s1 s2 s3
 		stratgy varchar,
+		--1min 5min 15min 60min daily weekly monthly 
 		time_frame varchar,
 		);
 
@@ -577,6 +1171,42 @@ create table signals(timestamp_of_data_accessed varchar,
 
 
 create table orders(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		transaction_type varchar,
+		qty number,
+		price number,
+		price_value number,
+		trigger_price number,
+		order_type varchar,
+		product varchar,
+		duration varchar,
+		disclosed_quantity number,
+		order_id number,
+		time_stamp number,
+		remarks varchar
+);
+
+
+create table sl_orders(timestamp_of_data_accessed varchar,
+		exchange varchar,
+		symbol varchar,
+		transaction_type varchar,
+		qty number,
+		price number,
+		price_value number,
+		trigger_price number,
+		order_type varchar,
+		product varchar,
+		duration varchar,
+		disclosed_quantity number,
+		order_id number,
+		time_stamp number,
+		remarks varchar
+);
+
+
+create table target_orders(timestamp_of_data_accessed varchar,
 		exchange varchar,
 		symbol varchar,
 		transaction_type varchar,
@@ -641,7 +1271,7 @@ create table trade_book(timestamp_of_data_accessed varchar,
 		traded_price number);
 
 
-create table sl_orders();
+
 
 create table positions();
 

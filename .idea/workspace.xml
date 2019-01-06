@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21618849-b98d-43a4-88de-c882c698c454" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bootstrap.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order_preparation.py" beforeDir="false" afterPath="$PROJECT_DIR$/order_preparation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/signal_prepration.py" beforeDir="false" afterPath="$PROJECT_DIR$/signal_prepration.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,9 +35,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/upstox.txt">
           <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/order_preparation.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -56,11 +66,13 @@
       <list>
         <option value="$PROJECT_DIR$/bootstrap.py" />
         <option value="$PROJECT_DIR$/templates/bootstrap/base.html" />
+        <option value="$PROJECT_DIR$/order_preparation.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="685" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="683" />
     <option name="height" value="688" />
   </component>
@@ -148,10 +160,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="685" y="0" width="683" height="688" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.9147287" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15848215" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -207,6 +219,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/upstox.txt">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/order_preparation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
