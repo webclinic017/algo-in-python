@@ -13,6 +13,7 @@ def insertsingledata(dbname,tblname,rows):
     conn = sql.connect(dbname)
     cur = conn.cursor()
     values =' , '.join(map(str,rows))
+    print("values : ", values)
     sqlsmt = "insert into {} (dates, price) values {}".format(tblname,values)
     print(sqlsmt)
     cur.execute(sqlsmt)
@@ -45,9 +46,9 @@ def insertAndUdateData(dbname,tblname,rows):
 
 
 # showalldata('test.db','price')
-data = [(190114,266),(190113,256),(190114,243),(190115,256),(190103,259)]
-# insertsingledata('test.db','price',data)
+data = [(190116,266),(190117,256),(190118,243),(190119,256),(190120,259)]
+insertsingledata('test.db','price',data)
 
 
 
-insertAndUdateData('test.db','price',data)
+# insertAndUdateData('test.db','price',data)

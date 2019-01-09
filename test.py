@@ -1,1 +1,5 @@
-import upstox_api
+
+l = ['guddu','anand']
+
+print(l)
+print(tuple(l))
