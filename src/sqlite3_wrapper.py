@@ -1,7 +1,62 @@
 import sqlite3 as sql
+class Db:
+    
+    def __init__(self,dbname):
+        
+        self.dbname = dbname
+
+    def without_return_query(self,sql_query):
+        try:
+            conn = sql.connect(self.dbname)
+            cur = conn.cursor()
+            cur.execute(sql_query)
+            cur.close()
+            conn.commit()
+            conn.close()
+        except:
+            cur.close()
+            conn.rollback()
+            conn.close()
+            print("Error: commad failed : ",sql_query)
+
+    def with_return_query(self,sql_query):
+        try:
+            conn = sql.connect(self.dbname)
+            cur = conn.cursor()
+            cur.execute(sql_query)
+            data = cur.fetchall()
+            cur.close()
+            conn.commit()
+            conn.close()
+            return data
+        except:
+            cur.close()
+            conn.rollback()
+            conn.close()
+            print("Error: commad failed : ",sql_query)
+
+    def execute_script(self,script_name):
+        try:
+            try:
+                with open(script_name,'rb') as f:
+                    scrit_data = f.read()
+            except:
+                print("Error: can't open file ",script_name)
+            conn = sql.connect(self.dbname)
+            cur = conn.cursor()
+            cur.executescript(scrit_data)
+            cur.close()
+            conn.commit()
+            conn.close()
+        except:
+            cur.close()
+            conn.rollback()
+            conn.close()
+            print("Error: commad failed : ",script_name)
 
 
 class Table:
+	import sqlite3 as sql
 	def __init__(self,dbname,table_name):
 		self.dbname = dbname
 		self.tblname = table_name

@@ -1,1250 +1,1250 @@
+use test;
+/*--$$$$$$$$$$$$$$$   login.py  $$$$$$$$$$$$--*/
+create table if not exists  login_details(data_accessed_at timestamp,
+        api_key varchar(50),
+        api_secret varchar(50),
+        public_token varchar(50),
+        access_token varchar(50),
+        redirect_uri varchar(50),
+        post_back_uri varchar(50),
+        login_response varchar(50),
+		code varchar(50));
 
---$$$$$$$$$$$$$$$   login.py  $$$$$$$$$$$$4
-create table login_details(timestamp_of_data_accessed varchar,
-        api_key varchar,
-        api_secret varchar,
-        public_token varchar,
-        access_token varchar,
-        redirect_uri varchar,
-        post_back_uri varchar,
-        login_response varchar,
-		code varchar);
-
- --$$$$$$$$$$$$$  profile_and_balance.py $$$$$$$$$$$$$$$
-create table profile(timestamp_of_data_accessed varchar,
-			 client_id varchar,
-			 name varchar,
-			 email varchar,
-			 phone number,
-			 exchange_enabled varchar,
-			 product_enabled varchar);
+ /* --$$$$$$$$$$$$$  profile_and_balance.py $$$$$$$$$$$$$$$ */
+create table if not exists profile(data_accessed_at timestamp,
+			 client_id varchar(10),
+			 name varchar(20),
+			 email varchar(50),
+			 phone bigint,
+			 exchange_enabled varchar(50),
+			 product_enabled varchar(50));
 
 
-create table balance(timestamp_of_data_accessed varchar,
-	        segment varchar,
-			used_margin number,
-			payin_amount number,
-			span_margin number,
-			adhoc_margin number,
-			notional_cash number,
-			available_margin number,
-			exposure_margin number);
+create table if not exists balance(data_accessed_at timestamp,
+	        segment varchar(50),
+			used_margin DOUBLE(19,4),
+			payin_amount DOUBLE(19,4),
+			span_margin DOUBLE(19,4),
+			adhoc_margin DOUBLE(19,4),
+			notional_cash DOUBLE(19,4),
+			available_margin DOUBLE(19,4),
+			exposure_margin DOUBLE(19,4));
 
---$$$$$$$$$$$$$$  postback.py   $$$$$$$$$$$$$$$$$$$
-create table live_feed(timestamp_of_data_accessed varchar,
-		timestamp_of_data number,
-	    exchange varchar,
-	    symbol varchar,
-	    ltp number,
-	    open number,
-	    high number,
-	    low number,
-	    close number,
-	    vtt number,
-	    atp number,
-	    oi number,
-	    spot_price number,
-	    total_buy_qty number,
-	    total_sell_qty number,
-	    lower_circuit number,
-	    upper_circuit number,
+/* --$$$$$$$$$$$$$$  postback.py   $$$$$$$$$$$$$$$$$$$ */
+create table if not exists live_feed(data_accessed_at timestamp,
+		timestamp_of_data datetime,
+	    exchange varchar(10),
+	    symbol varchar(25),
+	    ltp DOUBLE(19,4),
+	    open_price DOUBLE(19,4),
+	    high_price DOUBLE(19,4),
+	    low_price DOUBLE(19,4),
+	    close_price DOUBLE(19,4),
+	    vtt DOUBLE(19,4),
+	    atp DOUBLE(19,4),
+	    oi DOUBLE(19,4),
+	    spot_price DOUBLE(19,4),
+	    total_buy_qty int,
+	    total_sell_qty int,
+	    lower_circuit DOUBLE(19,4),
+	    upper_circuit DOUBLE(19,4),
 	    
-	    bids_1_quantity number,
-        bids_1_price number,
-        bids_1_orders number
+	    bids_1_quantity int,
+        bids_1_price DOUBLE(19,4),
+        bids_1_orders int,
 
-        bids_2_quantity number,
-        bids_2_price number,
-        bids_2_orders number,
+        bids_2_quantity int,
+        bids_2_price DOUBLE(19,4),
+        bids_2_orders int,
 
-        bids_3_quantity number,
-        bids_3_price number,
-        bids_3_orders number,
+        bids_3_quantity int,
+        bids_3_price DOUBLE(19,4),
+        bids_3_orders int,
 
-        bids_4_quantity number,
-        bids_4_price number,
-        bids_4_orders number,        
+        bids_4_quantity int,
+        bids_4_price DOUBLE(19,4),
+        bids_4_orders int,        
 
         
-        bids_5_quantity number,
-        bids_5_price number,
-        bids_5_orders number,
+        bids_5_quantity int,
+        bids_5_price DOUBLE(19,4),
+        bids_5_orders int,
 
 
-        ask_1_quantity number,
-        ask_1_price number,
-        ask_1_orders number,
+        ask_1_quantity int,
+        ask_1_price DOUBLE(19,4),
+        ask_1_orders int,
 
 
-        ask_2_quantity number,
-        ask_2_price number,
-        ask_2_orders number,
+        ask_2_quantity int,
+        ask_2_price DOUBLE(19,4),
+        ask_2_orders int,
 
-        ask_3_quantity number,
-        ask_3_price number,
-        ask_3_orders number,
+        ask_3_quantity int,
+        ask_3_price DOUBLE(19,4),
+        ask_3_orders int,
 
-        ask_4_quantity number,
-        ask_4_price number,
-        ask_4_orders number,
+        ask_4_quantity int,
+        ask_4_price DOUBLE(19,4),
+        ask_4_orders int,
 
-        ask_5_quantity number,
-        ask_5_price number,
-        ask_5_orders number,
+        ask_5_quantity int,
+        ask_5_price DOUBLE(19,4),
+        ask_5_orders int,
 
-	    ltt number);
+	    ltt double(19,4));
 
-create table webhook(timestamp_of_data_accessed varchar,
-	         exchange varchar,
-			 token number,
-			 symbol varchar,
-			 product varchar,
-			 order_type varchar,
-			 duration varchar,
-			 price number,
-			 trigger_price number,
-			 quantity number,
-			 disclosed_quantity number,
-			 transaction_type varchar,
-			 average_price varchar,
-			 traded_quantity number,
-			 message varchar,
-			 exchange_order_id number,
-			 parent_order_id varchar,
-			 order_id number,
-			 exchange_time varchar,
-			 time_in_micro number,
-			 status varchar,
-			 is_amo varchar,
-			 valid_date varchar,
-			 order_request_id number,
-			 checksum varchar);
+create table if not exists webhook(data_accessed_at timestamp,
+	         exchange varchar(10),
+			 token bigint,
+			 symbol varchar(25),
+			 product varchar(20),
+			 order_type varchar(50),
+			 duration varchar(50),
+			 price DOUBLE(19,4),
+			 trigger_price DOUBLE(19,4),
+			 quantity int,
+			 disclose_priced_quantity int,
+			 transaction_type varchar(20),
+			 average_price double(19,4),
+			 traded_quantity int,
+			 message varchar(100),
+			 exchange_order_id bigint,
+			 parent_order_id bigint,
+			 order_id bigint,
+			 exchange_time datetime,
+			 time_in_micro bigint,
+			 status varchar(100),
+			 is_amo varchar(20),
+			 valid_date datetime,
+			 order_request_id bigint,
+			 checksum varchar(50));
 
-----#################################################
+/* ----################################################# */
 
----$$$$$$$$$$$$$$$ master_contracts.py $$$$$$$$$$$$$$$
-create table master_contracts(timestamp_of_data_accessed varchar,
-			exchange varchar,
-			token number,
-			parent_token number,
-			symbol varchar,
-			name varchar,
-			closing_price number,
-			expiry varchar,
-			strike_price number,
-			tick_size number,
-			lot_size number,
-			instrument_type varchar,
-			isin varchar,
+/* ---$$$$$$$$$$$$$$$ master_contracts.py $$$$$$$$$$$$$$$ */
+create table if not exists master_contracts(data_accessed_at timestamp,
+			exchange varchar(10),
+			token bigint,
+			parent_token bigint,
+			symbol varchar(25),
+			name varchar(50),
+			closing_price DOUBLE(19,4),
+			expiry datetime,
+			strike_price DOUBLE(19,4),
+			tick_size int,
+			lot_size int,
+			instrument_type varchar(20),
+			isin varchar(20),
 
-    	    lower_circuit number,
-    	    upper_circuit number,
-    	    instrument_name varchar,
-    	    gn number,
-    	    gd number,
-    	    pn number,
-    	    pd number,
-    	   circuit_limit varchar,
-    	   status varchar,
-    	   yearly_low number,
-    	   yearly_high number,
-    	   open_interest number);
+    	    lower_circuit double(19,6),
+    	    upper_circuit double(19,6),
+    	    instrument_name varchar(50),
+    	    gn double(19,4),
+    	    gd double(19,4),
+    	    pn double(19,4),
+    	    pd double(19,4),
+    	   circuit_limit double(19,4),
+    	   status varchar(100),
+    	   yearly_low_price DOUBLE(19,4),
+    	   yearly_high_price DOUBLE(19,4),
+    	   open_price_interest double(19,4));
 
 
----######################################################
---$$$$$$$$$$$$$$$  instruments.py  $$$$$$$$$$$$$$$$
-create table instrument_list(timestamp_of_data_accessed varchar,
-		instrument_token number,
-		exchange_token number,
-		exchange varchar,
-		tradingsymbol number,
-		name varchar,
-		last_price number,
-		expiry number,
+/* ---###################################################### */
+/* --$$$$$$$$$$$$$$$  instruments.py  $$$$$$$$$$$$$$$$ */
+create table if not exists instrument_list(data_accessed_at timestamp,
+		instrument_token bigint,
+		exchange_token bigint,
+		exchange varchar(10),
+		tradingsymbol varchar(25),
+		name varchar(20),
+		last_price DOUBLE(19,4),
+		expiry datetime,
 
-		strike varchar,
-		tick_size number,
-		lot_size number,
-		instrument_type varchar,
-		segment varchar,
+		strike double(19,4),
+		tick_size int,
+		lot_size int,
+		instrument_type varchar(20),
+		segment varchar(20),
 		
-		upstox_kiteconnect varchar);
-
-create table stock_details(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		sector varchar,
-		industry varchar,
-		group_name varchar,
-		--True or False
-		nifty_50_group varchar,
-		nifty_100_group varchar,
-		nifty_200_group varchar,
-		nifty_500_group varchar,
-		nifty_bank_group varchar,
-		nifty_fo_stocks varchar,
-		nifty_next_50_group varchar,
-		nifty_midcap_50_group varchar,
-		price number,
-		daily_volatility number,
-		anulised_volatilty number,
-		Client_Wise_Position_Limits number,
-		Market_Wide_Position_Limits	number,
-		Settlement_Price number);
-
-----##########################################################
---$$$$$$$$$$$$$$$$$$ ohlc_downloader.py  $$$$$$$$$$$$$$$$$
-create table ohlc_1min(timestamp_of_data_accessed varchar,
-	        exchange varchar,
-	        symbol varchar,
-	        timestamp_of_data varchar,
-	        open number,
-	        high number,
-	        low number,
-	        close number,
-	        volume number,
-	        cp number);
-
-
-create table ohlc_5min(timestamp_of_data_accessed varchar,
-	        exchange varchar,
-	        symbol varchar,
-	        timestamp_of_data varchar,
-	        open number,
-	        high number,
-	        low number,
-	        close number,
-	        volume number,
-	        cp number);
-
-
-
-
-
-create table ohlc_15min(timestamp_of_data_accessed varchar,
-	        exchange varchar,
-	        symbol varchar,
-	        timestamp_of_data varchar,
-	        open number,
-	        high number,
-	        low number,
-	        close number,
-	        volume number,
-	        cp number);
-
-
-
-
-create table ohlc_60min(timestamp_of_data_accessed varchar,
-	        exchange varchar,
-	        symbol varchar,
-	        timestamp_of_data varchar,
-	        open number,
-	        high number,
-	        low number,
-	        close number,
-	        volume number,
-	        cp number);
-
-
-
-
-
-create table ohlc_daily(timestamp_of_data_accessed varchar,
-	        exchange varchar,
-	        symbol varchar,
-	        timestamp_of_data varchar,
-	        open number,
-	        high number,
-	        low number,
-	        close number,
-	        volume number,
-	        cp number);
-
-
-
-
-create table ohlc_weekly(timestamp_of_data_accessed varchar,
-	        exchange varchar,
-	        symbol varchar,
-	        timestamp_of_data varchar,
-	        open number,
-	        high number,
-	        low number,
-	        close number,
-	        volume number,
-	        cp number);
-
-
-
-create table ohlc_monthly(timestamp_of_data_accessed varchar,
-	        exchange varchar,
-	        symbol varchar,
-	        timestamp_of_data varchar,
-	        open number,
-	        high number,
-	        low number,
-	        close number,
-	        volume number,
-	        cp number);
-
-
---$$$$$$$$$$$$$$ indicator_data_generator.py $$$$$$$$$$$$$$$$$$$
-create table indicator_data_monthly(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		ltp_or_close_price number,
-		sma_50 number,
-		-- sma_50_pct = (ltp_or_close_price / sma_50 ) - 1
-		sma_50_pct number,
-		sma_100 number,
-		sma_100_pct number,
-		sma_200 number,
-		sma_200_pct number,
-		r1 number,
-		r1_pct number,
-		r2 number,
-		r2_pct number,
-		r3 number,
-		r3_pct number,
-		s1 number,
-		s1_pct number,
-		s2 number,
-		s2_pct number,
-		s3 number,
-		s3_pct number,
-		atr number,
-		atr_pct number,
-		range_10_pct number,
-		range_20_pct number,
-		range_50_pct number,
-			-------------upper... from high price
-		upper_arrow_10_slope number,
-		upper_arrow_10_predicted number,
-
-		upper_arrow_20_slope number,
-		upper_arrow_20_predicted number,
-
-		upper_arrow_50_slope number,		
-		upper_arrow_50_predicted number,
-			-----------lower... form low price
-		lower_arrow_10_slope number,
-		lower_arrow_10_predicted number,
-
-		lower_arrow_20_slope number,
-		lower_arrow_20_predicted number,
-
-		lower_arrow_50_slope number
-		lower_arrow_50_predicted number);
-
-create table indicator_data_weekly(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		ltp_or_close_price number,
-		sma_50 number,
-		-- sma_50_pct = (ltp_or_close_price / sma_50 ) - 1
-		sma_50_pct number,
-		sma_100 number,
-		sma_100_pct number,
-		sma_200 number,
-		sma_200_pct number,
-		r1 number,
-		r1_pct number,
-		r2 number,
-		r2_pct number,
-		r3 number,
-		r3_pct number,
-		s1 number,
-		s1_pct number,
-		s2 number,
-		s2_pct number,
-		s3 number,
-		s3_pct number,
-		atr number,
-		atr_pct number,
-		range_10_pct number,
-		range_20_pct number,
-		range_50_pct number,
-			-------------upper... from high price
-		upper_arrow_10_slope number,
-		upper_arrow_10_predicted number,
-
-		upper_arrow_20_slope number,
-		upper_arrow_20_predicted number,
-
-		upper_arrow_50_slope number,		
-		upper_arrow_50_predicted number,
-			-----------lower... form low price
-		lower_arrow_10_slope number,
-		lower_arrow_10_predicted number,
-
-		lower_arrow_20_slope number,
-		lower_arrow_20_predicted number,
-
-		lower_arrow_50_slope number,
-		lower_arrow_50_predicted number);
-
-create table indicator_data_daily(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		ltp_or_close_price number,
-		sma_50 number,
-		-- sma_50_pct = (ltp_or_close_price / sma_50 ) - 1
-		sma_50_pct number,
-		sma_100 number,
-		sma_100_pct number,
-		sma_200 number,
-		sma_200_pct number,
-		r1 number,
-		r1_pct number,
-		r2 number,
-		r2_pct number,
-		r3 number,
-		r3_pct number,
-		s1 number,
-		s1_pct number,
-		s2 number,
-		s2_pct number,
-		s3 number,
-		s3_pct number,
-		atr number,
-		atr_pct number,
-		range_10_pct number,
-		range_20_pct number,
-		range_50_pct number,
-			-------------upper... from high price
-		upper_arrow_10_slope number,
-		upper_arrow_10_predicted number,
-
-		upper_arrow_20_slope number,
-		upper_arrow_20_predicted number,
-
-		upper_arrow_50_slope number,		
-		upper_arrow_50_predicted number,
-			-----------lower... form low price
-		lower_arrow_10_slope number,
-		lower_arrow_10_predicted number,
-
-		lower_arrow_20_slope number,
-		lower_arrow_20_predicted number,
-
-		lower_arrow_50_slope number,
-		lower_arrow_50_predicted number);
-
-
-create table indicator_data_60min(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		ltp_or_close_price number,
-		sma_50 number,
-		-- sma_50_pct = (ltp_or_close_price / sma_50 ) - 1
-		sma_50_pct number,
-		sma_100 number,
-		sma_100_pct number,
-		sma_200 number,
-		sma_200_pct number,
-		r1 number,
-		r1_pct number,
-		r2 number,
-		r2_pct number,
-		r3 number,
-		r3_pct number,
-		s1 number,
-		s1_pct number,
-		s2 number,
-		s2_pct number,
-		s3 number,
-		s3_pct number,
-		atr number,
-		atr_pct number,
-		range_10_pct number,
-		range_20_pct number,
-		range_50_pct number,
-			-------------upper... from high price
-		upper_arrow_10_slope number,
-		upper_arrow_10_predicted number,
-
-		upper_arrow_20_slope number,
-		upper_arrow_20_predicted number,
-
-		upper_arrow_50_slope number,		
-		upper_arrow_50_predicted number,
-			-----------lower... form low price
-		lower_arrow_10_slope number,
-		lower_arrow_10_predicted number,
-
-		lower_arrow_20_slope number,
-		lower_arrow_20_predicted number,
-
-		lower_arrow_50_slope number,
-		lower_arrow_50_predicted number);
-
-
-create table indicator_data_15min(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		ltp_or_close_price number,
-		sma_50 number,
-		-- sma_50_pct = (ltp_or_close_price / sma_50 ) - 1
-		sma_50_pct number,
-		sma_100 number,
-		sma_100_pct number,
-		sma_200 number,
-		sma_200_pct number,
-		r1 number,
-		r1_pct number,
-		r2 number,
-		r2_pct number,
-		r3 number,
-		r3_pct number,
-		s1 number,
-		s1_pct number,
-		s2 number,
-		s2_pct number,
-		s3 number,
-		s3_pct number,
-		atr number,
-		atr_pct number,
-		range_10_pct number,
-		range_20_pct number,
-		range_50_pct number,
-			-------------upper... from high price
-		upper_arrow_10_slope number,
-		upper_arrow_10_predicted number,
-
-		upper_arrow_20_slope number,
-		upper_arrow_20_predicted number,
-
-		upper_arrow_50_slope number,		
-		upper_arrow_50_predicted number,
-			-----------lower... form low price
-		lower_arrow_10_slope number,
-		lower_arrow_10_predicted number,
-
-		lower_arrow_20_slope number,
-		lower_arrow_20_predicted number,
-
-		lower_arrow_50_slope number,
-		lower_arrow_50_predicted number);
-
-
-
-create table indicator_data_5min(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		ltp_or_close_price number,
-		sma_50 number,
-		-- sma_50_pct = (ltp_or_close_price / sma_50 ) - 1
-		sma_50_pct number,
-		sma_100 number,
-		sma_100_pct number,
-		sma_200 number,
-		sma_200_pct number,
-		r1 number,
-		r1_pct number,
-		r2 number,
-		r2_pct number,
-		r3 number,
-		r3_pct number,
-		s1 number,
-		s1_pct number,
-		s2 number,
-		s2_pct number,
-		s3 number,
-		s3_pct number,
-		atr number,
-		atr_pct number,
-		range_10_pct number,
-		range_20_pct number,
-		range_50_pct number,
-			-------------upper... from high price
-		upper_arrow_10_slope number,
-		upper_arrow_10_predicted number,
-
-		upper_arrow_20_slope number,
-		upper_arrow_20_predicted number,
-
-		upper_arrow_50_slope number,		
-		upper_arrow_50_predicted number,
-			-----------lower... form low price
-		lower_arrow_10_slope number,
-		lower_arrow_10_predicted number,
-
-		lower_arrow_20_slope number,
-		lower_arrow_20_predicted number,
-
-		lower_arrow_50_slope number,
-		lower_arrow_50_predicted number);
-
-create table indicator_data_1min(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		ltp_or_close_price number,
-		sma_50 number,
-		-- sma_50_pct = (ltp_or_close_price / sma_50 ) - 1
-		sma_50_pct number,
-		sma_100 number,
-		sma_100_pct number,
-		sma_200 number,
-		sma_200_pct number,
-		r1 number,
-		r1_pct number,
-		r2 number,
-		r2_pct number,
-		r3 number,
-		r3_pct number,
-		s1 number,
-		s1_pct number,
-		s2 number,
-		s2_pct number,
-		s3 number,
-		s3_pct number,
-		atr number,
-		atr_pct number,
-		range_10_pct number,
-		range_20_pct number,
-		range_50_pct number,
-			-------------upper... from high price
-		upper_arrow_10_slope number,
-		upper_arrow_10_predicted number,
-
-		upper_arrow_20_slope number,
-		upper_arrow_20_predicted number,
-
-		upper_arrow_50_slope number,		
-		upper_arrow_50_predicted number,
-			-----------lower... form low price
-		lower_arrow_10_slope number,
-		lower_arrow_10_predicted number,
-
-		lower_arrow_20_slope number,
-		lower_arrow_20_predicted number,
-
-		lower_arrow_50_slope number,
-		lower_arrow_50_predicted number);
-
-
--- $$$$$$$$$$$$ trend_finder.py $$$$$$$$$$$$$$$$$$$$
-create table trend_monthly(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		sma_50_signal varchar,
-		sma_100_signal varchar,
-		sma_200_signal varchar,
-		sma_final_signal varchar,
-
-		r1_signal varchar,
-		r2_signal varchar,
-		r3_signal varchar,
-		r_final_signal varchar,
-
-		s1_signal varchar,
-		s2_signal varchar,
-		s3_signal varchar,
-		s_final_signal varchar,
-
-		atr_signal varchar,
-
-
-		range_10_pct_signal varchar,
-		range_20_pct_signal varchar,
-		range_50_pct_signal varchar,
-		range_final_signal varchar,
-
-		upper_arrow_10_signal varchar,
-		upper_arrow_20_signal varchar,
-		upper_arrow_50_signal varchar,
-		upper_arrow_final_signal varchar,
-
-		lower_arrow_10_signal varchar,
-		lower_arrow_20_signal varchar,
-		lower_arrow_50_signal varchar,
-		lower_arrow_final_signal varchar,
-		final_signal varchar
+		upstox_kiteconnect varchar(20));
+
+create table if not exists stock_details(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		sector varchar(20),
+		industry varchar(20),
+		group_name varchar(20),
+		/* --True or False */
+		nifty_50_group varchar(20),
+		nifty_100_group varchar(20),
+		nifty_200_group varchar(20),
+		nifty_500_group varchar(20),
+		nifty_bank_group varchar(20),
+		nifty_fo_stocks varchar(20),
+		nifty_next_50_group varchar(20),
+		nifty_midcap_50_group varchar(20),
+		price DOUBLE(19,4),
+		daily_volatility double(19,4),
+		anulised_volatilty double(19,4),
+		Client_Wise_Position_Limits double(19,4),
+		Market_Wide_Position_Limits	double(19,4),
+		Settlement_price DOUBLE(19,4));
+
+/* ----########################################################## */
+/* --$$$$$$$$$$$$$$$$$$ ohlc_downloader.py  $$$$$$$$$$$$$$$$$ */
+create table if not exists ohlc_1min(data_accessed_at timestamp,
+	        exchange varchar(10),
+	        symbol varchar(25),
+	        timestamp_of_data datetime,
+	        open_price DOUBLE(19,4),
+	        high_price DOUBLE(19,4),
+	        low_price DOUBLE(19,4),
+	        close_price DOUBLE(19,4),
+	        volume double(19,4),
+	        cp double(19,4));
+
+
+create table if not exists ohlc_5min(data_accessed_at timestamp,
+	        exchange varchar(10),
+	        symbol varchar(25),
+	        timestamp_of_data datetime,
+	        open_price DOUBLE(19,4),
+	        high_price DOUBLE(19,4),
+	        low_price DOUBLE(19,4),
+	        close_price DOUBLE(19,4),
+	        volume double(19,4),
+	        cp double(19,4));
+
+
+
+
+
+create table if not exists ohlc_15min(data_accessed_at timestamp,
+	        exchange varchar(10),
+	        symbol varchar(25),
+	        timestamp_of_data datetime,
+	        open_price DOUBLE(19,4),
+	        high_price DOUBLE(19,4),
+	        low_price DOUBLE(19,4),
+	        close_price DOUBLE(19,4),
+	        volume double(19,4),
+	        cp double(19,4));
+
+
+
+
+create table if not exists ohlc_60min(data_accessed_at timestamp,
+	        exchange varchar(10),
+	        symbol varchar(25),
+	        timestamp_of_data datetime,
+	        open_price DOUBLE(19,4),
+	        high_price DOUBLE(19,4),
+	        low_price DOUBLE(19,4),
+	        close_price DOUBLE(19,4),
+	        volume double(19,4),
+	        cp double(19,4));
+
+
+
+
+
+create table if not exists ohlc_daily(data_accessed_at timestamp,
+	        exchange varchar(10),
+	        symbol varchar(25),
+	        timestamp_of_data datetime,
+	        open_price DOUBLE(19,4),
+	        high_price DOUBLE(19,4),
+	        low_price DOUBLE(19,4),
+	        close_price DOUBLE(19,4),
+	        volume double(19,4),
+	        cp double(19,4));
+
+
+
+
+create table if not exists ohlc_weekly(data_accessed_at timestamp,
+	        exchange varchar(10),
+	        symbol varchar(25),
+	        timestamp_of_data datetime,
+	        open_price DOUBLE(19,4),
+	        high_price DOUBLE(19,4),
+	        low_price DOUBLE(19,4),
+	        close_price DOUBLE(19,4),
+	        volume double(19,4),
+	        cp double(19,4));
+
+
+
+create table if not exists ohlc_monthly(data_accessed_at timestamp,
+	        exchange varchar(10),
+	        symbol varchar(25),
+	        timestamp_of_data datetime,
+	        open_price DOUBLE(19,4),
+	        high_price DOUBLE(19,4),
+	        low_price DOUBLE(19,4),
+	        close_price DOUBLE(19,4),
+	        volume double(19,4),
+	        cp double(19,4));
+
+
+/* --$$$$$$$$$$$$$$ indicator_data_generator.py $$$$$$$$$$$$$$$$$$$ */
+create table if not exists indicator_data_monthly(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		ltp_or_close_price_price DOUBLE(19,4),
+		sma_50 double(19,4),
+		/* -- sma_50_pct = (ltp_or_close_price_price / sma_50 ) - 1 */
+		sma_50_pct double(19,4),
+		sma_100 double(19,4),
+		sma_100_pct double(19,4),
+		sma_200 double(19,4),
+		sma_200_pct double(19,4),
+		r1 double(19,4),
+		r1_pct double(19,4),
+		r2 double(19,4),
+		r2_pct double(19,4),
+		r3 double(19,4),
+		r3_pct double(19,4),
+		s1 double(19,4),
+		s1_pct double(19,4),
+		s2 double(19,4),
+		s2_pct double(19,4),
+		s3 double(19,4),
+		s3_pct double(19,4),
+		atr double(19,4),
+		atr_pct double(19,4),
+		range_10_pct double(19,4),
+		range_20_pct double(19,4),
+		range_50_pct double(19,4),
+			/* -------------upper... from high_price price */
+		upper_arrow_10_slope double(19,4),
+		upper_arrow_10_predicted double(19,4),
+
+		upper_arrow_20_slope double(19,4),
+		upper_arrow_20_predicted double(19,4),
+
+		upper_arrow_50_slope double(19,4),		
+		upper_arrow_50_predicted double(19,4),
+			/* -----------lower... form low price */
+		lower_arrow_10_slope double(19,4),
+		lower_arrow_10_predicted double(19,4),
+
+		lower_arrow_20_slope double(19,4),
+		lower_arrow_20_predicted double(19,4),
+
+		lower_arrow_50_slope double(19,4),
+		lower_arrow_50_predicted double(19,4));
+
+create table if not exists indicator_data_weekly(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		ltp_or_close_price_price DOUBLE(19,4),
+		sma_50 double(19,4),
+		/* -- sma_50_pct = (ltp_or_close_price_price / sma_50 ) - 1 */
+		sma_50_pct double(19,4),
+		sma_100 double(19,4),
+		sma_100_pct double(19,4),
+		sma_200 double(19,4),
+		sma_200_pct double(19,4),
+		r1 double(19,4),
+		r1_pct double(19,4),
+		r2 double(19,4),
+		r2_pct double(19,4),
+		r3 double(19,4),
+		r3_pct double(19,4),
+		s1 double(19,4),
+		s1_pct double(19,4),
+		s2 double(19,4),
+		s2_pct double(19,4),
+		s3 double(19,4),
+		s3_pct double(19,4),
+		atr double(19,4),
+		atr_pct double(19,4),
+		range_10_pct double(19,4),
+		range_20_pct double(19,4),
+		range_50_pct double(19,4),
+			/* -------------upper... from high_price price */
+		upper_arrow_10_slope double(19,4),
+		upper_arrow_10_predicted double(19,4),
+
+		upper_arrow_20_slope double(19,4),
+		upper_arrow_20_predicted double(19,4),
+
+		upper_arrow_50_slope double(19,4),		
+		upper_arrow_50_predicted double(19,4),
+			/* -----------lower... form low price */
+		lower_arrow_10_slope double(19,4),
+		lower_arrow_10_predicted double(19,4),
+
+		lower_arrow_20_slope double(19,4),
+		lower_arrow_20_predicted double(19,4),
+
+		lower_arrow_50_slope double(19,4),
+		lower_arrow_50_predicted double(19,4));
+
+create table if not exists indicator_data_daily(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		ltp_or_close_price_price DOUBLE(19,4),
+		sma_50 double(19,4),
+		/* -- sma_50_pct = (ltp_or_close_price_price / sma_50 ) - 1 */
+		sma_50_pct double(19,4),
+		sma_100 double(19,4),
+		sma_100_pct double(19,4),
+		sma_200 double(19,4),
+		sma_200_pct double(19,4),
+		r1 double(19,4),
+		r1_pct double(19,4),
+		r2 double(19,4),
+		r2_pct double(19,4),
+		r3 double(19,4),
+		r3_pct double(19,4),
+		s1 double(19,4),
+		s1_pct double(19,4),
+		s2 double(19,4),
+		s2_pct double(19,4),
+		s3 double(19,4),
+		s3_pct double(19,4),
+		atr double(19,4),
+		atr_pct double(19,4),
+		range_10_pct double(19,4),
+		range_20_pct double(19,4),
+		range_50_pct double(19,4),
+			/* -------------upper... from high_price price */
+		upper_arrow_10_slope double(19,4),
+		upper_arrow_10_predicted double(19,4),
+
+		upper_arrow_20_slope double(19,4),
+		upper_arrow_20_predicted double(19,4),
+
+		upper_arrow_50_slope double(19,4),		
+		upper_arrow_50_predicted double(19,4),
+			/* -----------lower... form low price */
+		lower_arrow_10_slope double(19,4),
+		lower_arrow_10_predicted double(19,4),
+
+		lower_arrow_20_slope double(19,4),
+		lower_arrow_20_predicted double(19,4),
+
+		lower_arrow_50_slope double(19,4),
+		lower_arrow_50_predicted double(19,4));
+
+
+create table if not exists indicator_data_60min(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		ltp_or_close_price_price DOUBLE(19,4),
+		sma_50 double(19,4),
+		/* -- sma_50_pct = (ltp_or_close_price_price / sma_50 ) - 1 */
+		sma_50_pct double(19,4),
+		sma_100 double(19,4),
+		sma_100_pct double(19,4),
+		sma_200 double(19,4),
+		sma_200_pct double(19,4),
+		r1 double(19,4),
+		r1_pct double(19,4),
+		r2 double(19,4),
+		r2_pct double(19,4),
+		r3 double(19,4),
+		r3_pct double(19,4),
+		s1 double(19,4),
+		s1_pct double(19,4),
+		s2 double(19,4),
+		s2_pct double(19,4),
+		s3 double(19,4),
+		s3_pct double(19,4),
+		atr double(19,4),
+		atr_pct double(19,4),
+		range_10_pct double(19,4),
+		range_20_pct double(19,4),
+		range_50_pct double(19,4),
+			/* -------------upper... from high_price price */
+		upper_arrow_10_slope double(19,4),
+		upper_arrow_10_predicted double(19,4),
+
+		upper_arrow_20_slope double(19,4),
+		upper_arrow_20_predicted double(19,4),
+
+		upper_arrow_50_slope double(19,4),		
+		upper_arrow_50_predicted double(19,4),
+			/* -----------lower... form low price */
+		lower_arrow_10_slope double(19,4),
+		lower_arrow_10_predicted double(19,4),
+
+		lower_arrow_20_slope double(19,4),
+		lower_arrow_20_predicted double(19,4),
+
+		lower_arrow_50_slope double(19,4),
+		lower_arrow_50_predicted double(19,4));
+
+
+create table if not exists indicator_data_15min(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		ltp_or_close_price_price DOUBLE(19,4),
+		sma_50 double(19,4),
+		/* -- sma_50_pct = (ltp_or_close_price_price / sma_50 ) - 1 */
+		sma_50_pct double(19,4),
+		sma_100 double(19,4),
+		sma_100_pct double(19,4),
+		sma_200 double(19,4),
+		sma_200_pct double(19,4),
+		r1 double(19,4),
+		r1_pct double(19,4),
+		r2 double(19,4),
+		r2_pct double(19,4),
+		r3 double(19,4),
+		r3_pct double(19,4),
+		s1 double(19,4),
+		s1_pct double(19,4),
+		s2 double(19,4),
+		s2_pct double(19,4),
+		s3 double(19,4),
+		s3_pct double(19,4),
+		atr double(19,4),
+		atr_pct double(19,4),
+		range_10_pct double(19,4),
+		range_20_pct double(19,4),
+		range_50_pct double(19,4),
+			/* -------------upper... from high_price price */
+		upper_arrow_10_slope double(19,4),
+		upper_arrow_10_predicted double(19,4),
+
+		upper_arrow_20_slope double(19,4),
+		upper_arrow_20_predicted double(19,4),
+
+		upper_arrow_50_slope double(19,4),		
+		upper_arrow_50_predicted double(19,4),
+			/* -----------lower... form low price */
+		lower_arrow_10_slope double(19,4),
+		lower_arrow_10_predicted double(19,4),
+
+		lower_arrow_20_slope double(19,4),
+		lower_arrow_20_predicted double(19,4),
+
+		lower_arrow_50_slope double(19,4),
+		lower_arrow_50_predicted double(19,4));
+
+
+
+create table if not exists indicator_data_5min(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		ltp_or_close_price_price DOUBLE(19,4),
+		sma_50 double(19,4),
+		/* -- sma_50_pct = (ltp_or_close_price_price / sma_50 ) - 1 */
+		sma_50_pct double(19,4),
+		sma_100 double(19,4),
+		sma_100_pct double(19,4),
+		sma_200 double(19,4),
+		sma_200_pct double(19,4),
+		r1 double(19,4),
+		r1_pct double(19,4),
+		r2 double(19,4),
+		r2_pct double(19,4),
+		r3 double(19,4),
+		r3_pct double(19,4),
+		s1 double(19,4),
+		s1_pct double(19,4),
+		s2 double(19,4),
+		s2_pct double(19,4),
+		s3 double(19,4),
+		s3_pct double(19,4),
+		atr double(19,4),
+		atr_pct double(19,4),
+		range_10_pct double(19,4),
+		range_20_pct double(19,4),
+		range_50_pct double(19,4),
+			/* -------------upper... from high_price price */
+		upper_arrow_10_slope double(19,4),
+		upper_arrow_10_predicted double(19,4),
+
+		upper_arrow_20_slope double(19,4),
+		upper_arrow_20_predicted double(19,4),
+
+		upper_arrow_50_slope double(19,4),		
+		upper_arrow_50_predicted double(19,4),
+			/* -----------lower... form low price */
+		lower_arrow_10_slope double(19,4),
+		lower_arrow_10_predicted double(19,4),
+
+		lower_arrow_20_slope double(19,4),
+		lower_arrow_20_predicted double(19,4),
+
+		lower_arrow_50_slope double(19,4),
+		lower_arrow_50_predicted double(19,4));
+
+create table if not exists indicator_data_1min(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		ltp_or_close_price_price DOUBLE(19,4),
+		sma_50 double(19,4),
+		/* -- sma_50_pct = (ltp_or_close_price_price / sma_50 ) - 1 */
+		sma_50_pct double(19,4),
+		sma_100 double(19,4),
+		sma_100_pct double(19,4),
+		sma_200 double(19,4),
+		sma_200_pct double(19,4),
+		r1 double(19,4),
+		r1_pct double(19,4),
+		r2 double(19,4),
+		r2_pct double(19,4),
+		r3 double(19,4),
+		r3_pct double(19,4),
+		s1 double(19,4),
+		s1_pct double(19,4),
+		s2 double(19,4),
+		s2_pct double(19,4),
+		s3 double(19,4),
+		s3_pct double(19,4),
+		atr double(19,4),
+		atr_pct double(19,4),
+		range_10_pct double(19,4),
+		range_20_pct double(19,4),
+		range_50_pct double(19,4),
+			/* -------------upper... from high_price price */
+		upper_arrow_10_slope double(19,4),
+		upper_arrow_10_predicted double(19,4),
+
+		upper_arrow_20_slope double(19,4),
+		upper_arrow_20_predicted double(19,4),
+
+		upper_arrow_50_slope double(19,4),		
+		upper_arrow_50_predicted double(19,4),
+			/* -----------lower... form low price */
+		lower_arrow_10_slope double(19,4),
+		lower_arrow_10_predicted double(19,4),
+
+		lower_arrow_20_slope double(19,4),
+		lower_arrow_20_predicted double(19,4),
+
+		lower_arrow_50_slope double(19,4),
+		lower_arrow_50_predicted double(19,4));
+
+
+/* -- $$$$$$$$$$$$ trend_finder.py $$$$$$$$$$$$$$$$$$$$ */
+create table if not exists trend_monthly(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		sma_50_signal varchar(20),
+		sma_100_signal varchar(20),
+		sma_200_signal varchar(20),
+		sma_final_signal varchar(20),
+
+		r1_signal varchar(20),
+		r2_signal varchar(20),
+		r3_signal varchar(20),
+		r_final_signal varchar(20),
+
+		s1_signal varchar(20),
+		s2_signal varchar(20),
+		s3_signal varchar(20),
+		s_final_signal varchar(20),
+
+		atr_signal varchar(20),
+
+
+		range_10_pct_signal varchar(20),
+		range_20_pct_signal varchar(20),
+		range_50_pct_signal varchar(20),
+		range_final_signal varchar(20),
+
+		upper_arrow_10_signal varchar(20),
+		upper_arrow_20_signal varchar(20),
+		upper_arrow_50_signal varchar(20),
+		upper_arrow_final_signal varchar(20),
+
+		lower_arrow_10_signal varchar(20),
+		lower_arrow_20_signal varchar(20),
+		lower_arrow_50_signal varchar(20),
+		lower_arrow_final_signal varchar(20),
+		final_signal varchar(20)
 		);
 
-create table trend_weekly(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		sma_50_signal varchar,
-		sma_100_signal varchar,
-		sma_200_signal varchar,
-		sma_final_signal varchar,
+create table if not exists trend_weekly(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		sma_50_signal varchar(20),
+		sma_100_signal varchar(20),
+		sma_200_signal varchar(20),
+		sma_final_signal varchar(20),
 
-		r1_signal varchar,
-		r2_signal varchar,
-		r3_signal varchar,
-		r_final_signal varchar,
+		r1_signal varchar(20),
+		r2_signal varchar(20),
+		r3_signal varchar(20),
+		r_final_signal varchar(20),
 
-		s1_signal varchar,
-		s2_signal varchar,
-		s3_signal varchar,
-		s_final_signal varchar,
+		s1_signal varchar(20),
+		s2_signal varchar(20),
+		s3_signal varchar(20),
+		s_final_signal varchar(20),
 
-		atr_signal varchar,
-
-
-		range_10_pct_signal varchar,
-		range_20_pct_signal varchar,
-		range_50_pct_signal varchar,
-		range_final_signal varchar,
-
-		upper_arrow_10_signal varchar,
-		upper_arrow_20_signal varchar,
-		upper_arrow_50_signal varchar,
-		upper_arrow_final_signal varchar,
-
-		lower_arrow_10_signal varchar,
-		lower_arrow_20_signal varchar,
-		lower_arrow_50_signal varchar,
-		lower_arrow_final_signal varchar,
-		final_signal varchar
-		);
+		atr_signal varchar(20),
 
 
-create table trend_daily(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		sma_50_signal varchar,
-		sma_100_signal varchar,
-		sma_200_signal varchar,
-		sma_final_signal varchar,
+		range_10_pct_signal varchar(20),
+		range_20_pct_signal varchar(20),
+		range_50_pct_signal varchar(20),
+		range_final_signal varchar(20),
 
-		r1_signal varchar,
-		r2_signal varchar,
-		r3_signal varchar,
-		r_final_signal varchar,
+		upper_arrow_10_signal varchar(20),
+		upper_arrow_20_signal varchar(20),
+		upper_arrow_50_signal varchar(20),
+		upper_arrow_final_signal varchar(20),
 
-		s1_signal varchar,
-		s2_signal varchar,
-		s3_signal varchar,
-		s_final_signal varchar,
-
-		atr_signal varchar,
-
-
-		range_10_pct_signal varchar,
-		range_20_pct_signal varchar,
-		range_50_pct_signal varchar,
-		range_final_signal varchar,
-
-		upper_arrow_10_signal varchar,
-		upper_arrow_20_signal varchar,
-		upper_arrow_50_signal varchar,
-		upper_arrow_final_signal varchar,
-
-		lower_arrow_10_signal varchar,
-		lower_arrow_20_signal varchar,
-		lower_arrow_50_signal varchar,
-		lower_arrow_final_signal varchar,
-		final_signal varchar);
-
-
-create table trend_60min(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		sma_50_signal varchar,
-		sma_100_signal varchar,
-		sma_200_signal varchar,
-		sma_final_signal varchar,
-
-		r1_signal varchar,
-		r2_signal varchar,
-		r3_signal varchar,
-		r_final_signal varchar,
-
-		s1_signal varchar,
-		s2_signal varchar,
-		s3_signal varchar,
-		s_final_signal varchar,
-
-		atr_signal varchar,
-
-
-		range_10_pct_signal varchar,
-		range_20_pct_signal varchar,
-		range_50_pct_signal varchar,
-		range_final_signal varchar,
-
-		upper_arrow_10_signal varchar,
-		upper_arrow_20_signal varchar,
-		upper_arrow_50_signal varchar,
-		upper_arrow_final_signal varchar,
-
-		lower_arrow_10_signal varchar,
-		lower_arrow_20_signal varchar,
-		lower_arrow_50_signal varchar,
-		lower_arrow_final_signal varchar,
-		final_signal varchar);
-
-
-create table trend_15min(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		sma_50_signal varchar,
-		sma_100_signal varchar,
-		sma_200_signal varchar,
-		sma_final_signal varchar,
-
-		r1_signal varchar,
-		r2_signal varchar,
-		r3_signal varchar,
-		r_final_signal varchar,
-
-		s1_signal varchar,
-		s2_signal varchar,
-		s3_signal varchar,
-		s_final_signal varchar,
-
-		atr_signal varchar,
-
-
-		range_10_pct_signal varchar,
-		range_20_pct_signal varchar,
-		range_50_pct_signal varchar,
-		range_final_signal varchar,
-
-		upper_arrow_10_signal varchar,
-		upper_arrow_20_signal varchar,
-		upper_arrow_50_signal varchar,
-		upper_arrow_final_signal varchar,
-
-		lower_arrow_10_signal varchar,
-		lower_arrow_20_signal varchar,
-		lower_arrow_50_signal varchar,
-		lower_arrow_final_signal varchar,
-		final_signal varchar
+		lower_arrow_10_signal varchar(20),
+		lower_arrow_20_signal varchar(20),
+		lower_arrow_50_signal varchar(20),
+		lower_arrow_final_signal varchar(20),
+		final_signal varchar(20)
 		);
 
 
-create table trend_5min(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		sma_50_signal varchar,
-		sma_100_signal varchar,
-		sma_200_signal varchar,
-		sma_final_signal varchar,
+create table if not exists trend_daily(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		sma_50_signal varchar(20),
+		sma_100_signal varchar(20),
+		sma_200_signal varchar(20),
+		sma_final_signal varchar(20),
 
-		r1_signal varchar,
-		r2_signal varchar,
-		r3_signal varchar,
-		r_final_signal varchar,
+		r1_signal varchar(20),
+		r2_signal varchar(20),
+		r3_signal varchar(20),
+		r_final_signal varchar(20),
 
-		s1_signal varchar,
-		s2_signal varchar,
-		s3_signal varchar,
-		s_final_signal varchar,
+		s1_signal varchar(20),
+		s2_signal varchar(20),
+		s3_signal varchar(20),
+		s_final_signal varchar(20),
 
-		atr_signal varchar,
+		atr_signal varchar(20),
 
 
-		range_10_pct_signal varchar,
-		range_20_pct_signal varchar,
-		range_50_pct_signal varchar,
-		range_final_signal varchar,
+		range_10_pct_signal varchar(20),
+		range_20_pct_signal varchar(20),
+		range_50_pct_signal varchar(20),
+		range_final_signal varchar(20),
 
-		upper_arrow_10_signal varchar,
-		upper_arrow_20_signal varchar,
-		upper_arrow_50_signal varchar,
-		upper_arrow_final_signal varchar,
+		upper_arrow_10_signal varchar(20),
+		upper_arrow_20_signal varchar(20),
+		upper_arrow_50_signal varchar(20),
+		upper_arrow_final_signal varchar(20),
 
-		lower_arrow_10_signal varchar,
-		lower_arrow_20_signal varchar,
-		lower_arrow_50_signal varchar,
-		lower_arrow_final_signal varchar,
-		final_signal varchar
+		lower_arrow_10_signal varchar(20),
+		lower_arrow_20_signal varchar(20),
+		lower_arrow_50_signal varchar(20),
+		lower_arrow_final_signal varchar(20),
+		final_signal varchar(20));
+
+
+create table if not exists trend_60min(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		sma_50_signal varchar(20),
+		sma_100_signal varchar(20),
+		sma_200_signal varchar(20),
+		sma_final_signal varchar(20),
+
+		r1_signal varchar(20),
+		r2_signal varchar(20),
+		r3_signal varchar(20),
+		r_final_signal varchar(20),
+
+		s1_signal varchar(20),
+		s2_signal varchar(20),
+		s3_signal varchar(20),
+		s_final_signal varchar(20),
+
+		atr_signal varchar(20),
+
+
+		range_10_pct_signal varchar(20),
+		range_20_pct_signal varchar(20),
+		range_50_pct_signal varchar(20),
+		range_final_signal varchar(20),
+
+		upper_arrow_10_signal varchar(20),
+		upper_arrow_20_signal varchar(20),
+		upper_arrow_50_signal varchar(20),
+		upper_arrow_final_signal varchar(20),
+
+		lower_arrow_10_signal varchar(20),
+		lower_arrow_20_signal varchar(20),
+		lower_arrow_50_signal varchar(20),
+		lower_arrow_final_signal varchar(20),
+		final_signal varchar(20));
+
+
+create table if not exists trend_15min(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		sma_50_signal varchar(20),
+		sma_100_signal varchar(20),
+		sma_200_signal varchar(20),
+		sma_final_signal varchar(20),
+
+		r1_signal varchar(20),
+		r2_signal varchar(20),
+		r3_signal varchar(20),
+		r_final_signal varchar(20),
+
+		s1_signal varchar(20),
+		s2_signal varchar(20),
+		s3_signal varchar(20),
+		s_final_signal varchar(20),
+
+		atr_signal varchar(20),
+
+
+		range_10_pct_signal varchar(20),
+		range_20_pct_signal varchar(20),
+		range_50_pct_signal varchar(20),
+		range_final_signal varchar(20),
+
+		upper_arrow_10_signal varchar(20),
+		upper_arrow_20_signal varchar(20),
+		upper_arrow_50_signal varchar(20),
+		upper_arrow_final_signal varchar(20),
+
+		lower_arrow_10_signal varchar(20),
+		lower_arrow_20_signal varchar(20),
+		lower_arrow_50_signal varchar(20),
+		lower_arrow_final_signal varchar(20),
+		final_signal varchar(20)
 		);
 
-create table trend_1min(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		sma_50_signal varchar,
-		sma_100_signal varchar,
-		sma_200_signal varchar,
-		sma_final_signal varchar,
 
-		r1_signal varchar,
-		r2_signal varchar,
-		r3_signal varchar,
-		r_final_signal varchar,
+create table if not exists trend_5min(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		sma_50_signal varchar(20),
+		sma_100_signal varchar(20),
+		sma_200_signal varchar(20),
+		sma_final_signal varchar(20),
 
-		s1_signal varchar,
-		s2_signal varchar,
-		s3_signal varchar,
-		s_final_signal varchar,
+		r1_signal varchar(20),
+		r2_signal varchar(20),
+		r3_signal varchar(20),
+		r_final_signal varchar(20),
 
-		atr_signal varchar,
+		s1_signal varchar(20),
+		s2_signal varchar(20),
+		s3_signal varchar(20),
+		s_final_signal varchar(20),
+
+		atr_signal varchar(20),
 
 
-		range_10_pct_signal varchar,
-		range_20_pct_signal varchar,
-		range_50_pct_signal varchar,
-		range_final_signal varchar,
+		range_10_pct_signal varchar(20),
+		range_20_pct_signal varchar(20),
+		range_50_pct_signal varchar(20),
+		range_final_signal varchar(20),
 
-		upper_arrow_10_signal varchar,
-		upper_arrow_20_signal varchar,
-		upper_arrow_50_signal varchar,
-		upper_arrow_final_signal varchar,
+		upper_arrow_10_signal varchar(20),
+		upper_arrow_20_signal varchar(20),
+		upper_arrow_50_signal varchar(20),
+		upper_arrow_final_signal varchar(20),
 
-		lower_arrow_10_signal varchar,
-		lower_arrow_20_signal varchar,
-		lower_arrow_50_signal varchar,
-		lower_arrow_final_signal varchar,
-		final_signal varchar
+		lower_arrow_10_signal varchar(20),
+		lower_arrow_20_signal varchar(20),
+		lower_arrow_50_signal varchar(20),
+		lower_arrow_final_signal varchar(20),
+		final_signal varchar(20)
 		);
 
--- $$$$$$$$$$$$$$$ trade_finder.py $$$$$$$$$$$$$$$$$$$
-create table signals(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		price varchar,
-		atr number,
-		--sma50 sma100 sma100 r1 r2 r3 s1 s2 s3
-		stratgy varchar,
-		--1min 5min 15min 60min daily weekly monthly 
-		time_frame varchar);
+create table if not exists trend_1min(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		sma_50_signal varchar(20),
+		sma_100_signal varchar(20),
+		sma_200_signal varchar(20),
+		sma_final_signal varchar(20),
 
----#############################################################
+		r1_signal varchar(20),
+		r2_signal varchar(20),
+		r3_signal varchar(20),
+		r_final_signal varchar(20),
 
--- $$$$$$$$$$$$ trade_analysis.py $$$$$$$$$
-create table holdings (timestamp_of_data_accessed varchar,
-	        instrument_exchange_1 varchar,
-			instrument_exchange_1_symbol varchar,
-			instrument_exchange_1_token number,
+		s1_signal varchar(20),
+		s2_signal varchar(20),
+		s3_signal varchar(20),
+		s_final_signal varchar(20),
 
-			instrument_exchange_2 varchar,
-			instrument_exchange_2_symbol varchar,
-			instrument_exchange_2_token number,
+		atr_signal varchar(20),
+
+
+		range_10_pct_signal varchar(20),
+		range_20_pct_signal varchar(20),
+		range_50_pct_signal varchar(20),
+		range_final_signal varchar(20),
+
+		upper_arrow_10_signal varchar(20),
+		upper_arrow_20_signal varchar(20),
+		upper_arrow_50_signal varchar(20),
+		upper_arrow_final_signal varchar(20),
+
+		lower_arrow_10_signal varchar(20),
+		lower_arrow_20_signal varchar(20),
+		lower_arrow_50_signal varchar(20),
+		lower_arrow_final_signal varchar(20),
+		final_signal varchar(20)
+		);
+
+/* -- $$$$$$$$$$$$$$$ trade_finder.py $$$$$$$$$$$$$$$$$$$ */
+create table if not exists signals(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		price double(19,4),
+		atr double(19,4),
+		/* --sma50 sma100 sma100 r1 r2 r3 s1 s2 s3 */
+		stratgy varchar(20),
+		/* --1min 5min 15min 60min daily weekly monthly  */
+		time_frame varchar(20));
+
+/* ---############################################################# */
+
+/* -- $$$$$$$$$$$$ trade_analysis.py $$$$$$$$$ */
+create table if not exists holdings (data_accessed_at timestamp,
+	        instrument_exchange_1 varchar(20),
+			instrument_exchange_1_symbol varchar(25),
+			instrument_exchange_1_token bigint,
+
+			instrument_exchange_2 varchar(20),
+			instrument_exchange_2_symbol varchar(25),
+			instrument_exchange_2_token bigint,
 			
-			product varchar,
-            collateral_type varchar,
-            cnc_used_quantity number,
-            quantity number,
-            collateral_qty number,
-            haircut number,
-            avg_price number);
+			product varchar(20),
+            collateral_type varchar(20),
+            cnc_used_quantity int,
+            quantity int,
+            collateral_qty int,
+            haircut double(19,4),
+            avg_price DOUBLE(19,4));
 
 
-create table positions (timestamp_of_data_accessed varchar,
-	        exchange varchar,
-			product varchar,
-			symbol varchar,
-			token number,
-			buy_amount number,
-            sell_amount number,
-            buy_quantity number,
-            sell_quantity number,
-            cf_buy_amount number,
-            cf_sell_amount number,
-            cf_buy_quantity number,
-            cf_sell_quantity number,
-            avg_buy_price number,
-            avg_sell_price number,
-            net_quantity number,
-            close_price number,
-            last_traded_price number,
-            realized_profit number,
-            unrealized_profit number,
-            cf_avg_price number);
+create table if not exists positions (data_accessed_at timestamp,
+	        exchange varchar(10),
+			product varchar(20),
+			symbol varchar(25),
+			token bigint,
+			buy_amount double(19,4),
+            sell_amount double(19,4),
+            buy_quantity int,
+            sell_quantity int,
+            cf_buy_amount double(19,4),
+            cf_sell_amount double(19,4),
+            cf_buy_quantity int,
+            cf_sell_quantity int,
+            avg_buy_price DOUBLE(19,4),
+            avg_sell_price DOUBLE(19,4),
+            net_quantity int,
+            close_price_price DOUBLE(19,4),
+            last_traded_price DOUBLE(19,4),
+            realized_profit double(19,4),
+            unrealized_profit double(19,4),
+            cf_avg_price DOUBLE(19,4));
 
 
-create table trade_book(timestamp_of_data_accessed varchar,
-            exchange varchar,
-            token number,
-            symbol varchar,
-            product varchar,
-            order_type varchar,
-            transaction_type varchar,
-            traded_quantity number,
-            exchange_order_id number,
-            order_id number,
-            exchange_time varchar,
-            time_in_micro number,
-            traded_price number,
-            trade_id number);
+create table if not exists trade_book(data_accessed_at timestamp,
+            exchange varchar(10),
+            token bigint,
+            symbol varchar(25),
+            product varchar(20),
+            order_type varchar(20),
+            transaction_type varchar(20),
+            traded_quantity int,
+            exchange_order_id bigint,
+            order_id bigint,
+            exchange_time datetime,
+            time_in_micro bigint,
+            traded_price DOUBLE(19,4),
+            trade_id bigint);
 
-create table open_trades(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		product varchar,
-		order_type varchar,
-		transaction_type varchar,
-		net_quantity number,
-		avg_price number,
-		traded_price number);
+create table if not exists open_price_trades(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		product varchar(20),
+		order_type varchar(20),
+		transaction_type varchar(20),
+		net_quantity int,
+		avg_price DOUBLE(19,4),
+		traded_price DOUBLE(19,4));
 
-create table closed_trades(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		product varchar,
-		order_type varchar,
-		traded_quantity number,
-		pnl number);
-
-
+create table if not exists close_priced_trades(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		product varchar(20),
+		order_type varchar(20),
+		traded_quantity int,
+		pnl double(19,4));
 
 
----#########################################################
-
--- $$$$$$$$$$$$$$$$ order_analysis.py $$$$$$$$$$
-create table order_book(timestamp_of_data_accessed varchar,
-	        exchange varchar,
-            token number,
-            symbol varchar,
-            product varchar,
-            order_type varchar,
-            duration varchar,
-            price number,
-            trigger_price number,
-            quantity number,
-            disclosed_quantity number,
-            transaction_type varchar,
-            average_price number,
-            traded_quantity number,
-            message varchar,
-            exchange_order_id number,
-            parent_order_id varchar,
-            order_id number,
-            exchange_time varchar,
-            time_in_micro number,
-            status varchar,
-            is_amo varchar,
-            valid_date varchar,
-            fill_leg number,
-            order_request_id number,
-            report varchar,
-            text_msg varchar);
 
 
-create table open_orders(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		transaction_type varchar,
-		qty number,
-		price number,
-		price_value number,
-		trigger_price number,
-		order_type varchar,
-		product varchar,
-		duration varchar,
-		disclosed_quantity number,
-		order_id number,
-		time_stamp number,
-		order_request_id varchar
+/* ---######################################################### */
+
+/* -- $$$$$$$$$$$$$$$$ order_analysis.py $$$$$$$$$$ */
+create table if not exists order_book(data_accessed_at timestamp,
+	        exchange varchar(10),
+            token bigint,
+            symbol varchar(25),
+            product varchar(20),
+            order_type varchar(20),
+            duration varchar(10),
+            price DOUBLE(19,4),
+            trigger_price DOUBLE(19,4),
+            quantity int,
+            disclose_priced_quantity int,
+            transaction_type varchar(20),
+            average_price DOUBLE(19,4),
+            traded_quantity int,
+            message varchar(100),
+            exchange_order_id bigint,
+            parent_order_id bigint,
+            order_id bigint,
+            exchange_time datetime,
+            time_in_micro bigint,
+            status varchar(100),
+            is_amo varchar(20),
+            valid_date datetime,
+            fill_leg double(19,4),
+            order_request_id bigint,
+            report varchar(20),
+            text_msg varchar(100));
+
+
+create table if not exists open_price_orders(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		transaction_type varchar(20),
+		qty int,
+		price DOUBLE(19,4),
+		price_value double(19,4),
+		trigger_price DOUBLE(19,4),
+		order_type varchar(20),
+		product varchar(20),
+		duration varchar(10),
+		disclose_priced_quantity int,
+		order_id bigint,
+		time_stamp timestamp,
+		order_request_id bigint
 );
 
-create table pending_orders(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		transaction_type varchar,
-		qty number,
-		price number,
-		price_value number,
-		trigger_price number,
-		order_type varchar,
-		product varchar,
-		duration varchar,
-		disclosed_quantity number,
-		order_id number,
-		time_stamp number,
-		order_request_id varchar
-);
-
-
-create table sl_orders(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		transaction_type varchar,
-		qty number,
-		price number,
-		price_value number,
-		trigger_price number,
-		order_type varchar,
-		product varchar,
-		duration varchar,
-		disclosed_quantity number,
-		order_id number,
-		time_stamp number,
-		remarks varchar
+create table if not exists pending_orders(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		transaction_type varchar(20),
+		qty int,
+		price DOUBLE(19,4),
+		price_value double(19,4),
+		trigger_price DOUBLE(19,4),
+		order_type varchar(20),
+		product varchar(20),
+		duration varchar(10),
+		disclose_priced_quantity int,
+		order_id bigint,
+		time_stamp timestamp,
+		order_request_id bigint
 );
 
 
-create table target_orders(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		transaction_type varchar,
-		qty number,
-		price number,
-		price_value number,
-		trigger_price number,
-		order_type varchar,
-		product varchar,
-		duration varchar,
-		disclosed_quantity number,
-		order_id number,
-		time_stamp number,
-		remarks varchar
-);
-
----############################################
-
-
-
--- $$$$$$$$$$$$$$$ Intrady_trade_management.py $$$$$$$$$$$$$
--- $$$$$$$$$$$$$$$ Swing_trade_management.py $$$$$$$$$$$$$
--- $$$$$$$$$$$$$$$ Delivery_trade_management.py $$$$$$$$$$$$$
-create table account_status (timestamp_of_data_accessed varchar,
-		--------------------------from api ----------------------------------
-        --input 
-        total_capital number,
-        total_margin number,
-        total_unrealised_pnl number,
-        total_realised_pnl number,
-        	--total_pnl = total_unrealised_pnl + total_realised_pnl
-        total_pnl number,
-        --total_profit = total_pnl if total_pnl > 0
-        total_profit number,
-        --total_loss = -total_pnl if total_pnl < 0
-        total_loss number,
-        ------------------------- pnl analysis from trade analysis -----------------------
-         --input
-        stocks_in_loss varchar,
-        stocks_in_profit varchar,
-        --no_of_stock_in_loss = len(stocks_list_in_loss)
-        no_of_stock_in_loss number,       
-        --no_of_stock_in_profit = len(stocks_list_in_profit)
-        no_of_stock_in_profit number,
-        --profit_loss_positions_ratio = no_of_stock_in_profit / no_of_stock_in_loss
-        profit_loss_positions_ratio number,
-        -----------------------positions analysis from trade analysis ---------------------
-        --input
-        long_positions varchar,
-        short_positions varchar,
-        --no_of_long_position = len(long_positions)
-        no_of_long_position number,        
-        --no_of_short_position = len(short_positions)
-        no_of_short_position number, 
-        --long_short_ratio = no_of_long_position / no_of_short_position
-        long_short_ratio number,
-        --no_of_positions = no_of_long_position + no_of_short_position
-        no_of_positions number
-
-
+create table if not exists sl_orders(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		transaction_type varchar(20),
+		qty int,
+		price DOUBLE(19,4),
+		price_value double(19,4),
+		trigger_price DOUBLE(19,4),
+		order_type varchar(20),
+		product varchar(20),
+		duration varchar(10),
+		disclose_priced_quantity int,
+		order_id bigint,
+		time_stamp timestamp,
+		remarks varchar(50)
 );
 
 
+create table if not exists target_orders(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		transaction_type varchar(20),
+		qty int,
+		price DOUBLE(19,4),
+		price_value double(19,4),
+		trigger_price DOUBLE(19,4),
+		order_type varchar(20),
+		product varchar(20),
+		duration varchar(10),
+		disclose_priced_quantity int,
+		order_id bigint,
+		time_stamp timestamp,
+		remarks varchar(50)
+);
 
-create table trade_methodology (timestamp_of_data_accessed varchar,
-        -----------------------trading method from manual entry----------------
-        ---trade_type intraday or swing or delivery
-        trade_type  varchar,
+/* ---############################################ */
 
-        -----trading style from manual entry--------------
-        -- trading style long or short or both
-        trading_style varchar,
-		-------------------------risk_matrix  from manual entry---------------------------
-		        --input
-		margin_allotted number,
-        max_risk_PCT number,
-        min_no_of_positions number,
-        max_no_of_positions number,
-        max_no_of_long_positions number,
-        max_no_of_short_positions number,
-        --max_loss = (margin_allotted *  max_risk_PCT ) / 100
-        max_loss number,
-         --max_loss_per_stock = max_loss / min_no_of_open_stock
-        max_loss_per_stock number,
-        --------------------positions_status from trade analysis -------------------------------
-                   --input
-        no_of_long_position number,
-        no_of_short_position number,
-        --no_of_positions= no_of_long_position + no_of_short_position        
-        no_of_positions number,
-        --------------------------total_loss from current_account_status ----------------------
-        --input
-        total_loss number,
-        ------------------------market_trend from market analysis  ------------------------------
-                --input (UP  or  DOWN)
-        nifty_trend varchar,
-        -- input True or False
-        is_only_trade_in_nifty_trend varchar
+
+
+/* -- $$$$$$$$$$$$$$$ Intrady_trade_management.py $$$$$$$$$$$$$ */
+/* -- $$$$$$$$$$$$$$$ Swing_trade_management.py $$$$$$$$$$$$$ */
+/* -- $$$$$$$$$$$$$$$ Delivery_trade_management.py $$$$$$$$$$$$$ */
+create table if not exists account_status (data_accessed_at timestamp,
+		/* --------------------------from api ---------------------------------- */
+        /* --input  */
+        total_capital double(19,4),
+        total_margin double(19,4),
+        total_unrealised_pnl double(19,4),
+        total_realised_pnl double(19,4),
+        	/* --total_pnl = total_unrealised_pnl + total_realised_pnl */
+        total_pnl double(19,4),
+        /* --total_profit = total_pnl if total_pnl > 0 */
+        total_profit double(19,4),
+        /* --total_loss = -total_pnl if total_pnl < 0 */
+        total_loss double(19,4),
+        /* ------------------------- pnl analysis from trade analysis ----------------------- */
+         /* --input */
+        stocks_in_loss varchar(120),
+        stocks_in_profit varchar(120),
+        /* --no_of_stock_in_loss = len(stocks_list_in_loss) */
+        no_of_stock_in_loss double(19,4),       
+        /* --no_of_stock_in_profit = len(stocks_list_in_profit) */
+        no_of_stock_in_profit double(19,4),
+        /* --profit_loss_positions_ratio = no_of_stock_in_profit / no_of_stock_in_loss */
+        profit_loss_positions_ratio double(19,4),
+        /* -----------------------positions analysis from trade analysis --------------------- */
+        /* --input */
+        long_positions varchar(120),
+        short_positions varchar(120),
+        /* --no_of_long_position = len(long_positions) */
+        no_of_long_position double(19,4),        
+        /* --no_of_short_position = len(short_positions) */
+        no_of_short_position double(19,4), 
+        /* --long_short_ratio = no_of_long_position / no_of_short_position */
+        long_short_ratio double(19,4),
+        /* --no_of_positions = no_of_long_position + no_of_short_position */
+        no_of_positions double(19,4)
+
+
+);
+
+
+
+create table if not exists trade_methodology (data_accessed_at timestamp,
+        /* -----------------------trading method from manual entry---------------- */
+        /* ---trade_type intraday or swing or delivery */
+        trade_type  varchar(20),
+
+        /* -----trading style from manual entry-------------- */
+        /* -- trading style long or short or both */
+        trading_style varchar(120),
+		/* -------------------------risk_matrix  from manual entry--------------------------- */
+		        /* --input */
+		margin_allotted double(19,4),
+        max_risk_pct double(19,4),
+        min_no_of_positions double(19,4),
+        max_no_of_positions double(19,4),
+        max_no_of_long_positions double(19,4),
+        max_no_of_short_positions double(19,4),
+        /* --max_loss = (margin_allotted *  max_risk_PCT ) / 100 */
+        max_loss double(19,4),
+         /* --max_loss_per_stock = max_loss / min_no_of_open_price_stock */
+        max_loss_per_stock double(19,4),
+        /* --------------------positions_status from trade analysis ------------------------------- */
+                   /* --input */
+        no_of_long_position double(19,4),
+        no_of_short_position double(19,4),
+        /* --no_of_positions= no_of_long_position + no_of_short_position         */
+        no_of_positions double(19,4),
+        /* --------------------------total_loss from current_account_status ---------------------- */
+        /* --input */
+        total_loss double(19,4),
+        /* ------------------------market_trend from market analysis  ------------------------------ */
+                /* --input (UP  or  DOWN) */
+        nifty_trend varchar(120),
+        /* -- input True or False */
+        is_only_trade_in_nifty_trend varchar(50)
  );
 
 
 
 
-create table watchlist(timestamp_of_data_accessed varchar,
-		exchange varchar,
-		symbol varchar,
-		--whitelist or blacklist
-		category varchar,
-		--exchange_symbol = exchange + '_' + symbol
-		exchange_symbol varchar,
-		trend_monthly varchar,
-		trend_weekly varchar,
-		trend_daily varchar,
-		trend_60min varchar,
-		group_name varchar,
-		price number,
-		sector number,
-		industry number,
-		mcap number,
-		volume number);
+create table if not exists watchlist(data_accessed_at timestamp,
+		exchange varchar(10),
+		symbol varchar(25),
+		/* --whitelist or blacklist */
+		category varchar(120),
+		/* --exchange_symbol = exchange + '_' + symbol */
+		exchange_symbol varchar(25),
+		trend_monthly varchar(120),
+		trend_weekly varchar(120),
+		trend_daily varchar(120),
+		trend_60min varchar(120),
+		group_name varchar(120),
+		price DOUBLE(19,4),
+		sector varchar(20),
+		industry varchar(20),
+		mcap double(19,4),
+		volume double(19,4));
 
 
-create table order_management (timestamp_of_data_accessed varchar,
+create table if not exists order_management (data_accessed_at timestamp,
 		
-		exchange varchar,
-		symbol varchar,
-		transaction_type varchar,
+		exchange varchar(10),
+		symbol varchar(25),
+		transaction_type varchar(20),
 		
-		order_type varchar,
-		product varchar,
-		duration varchar,
-		disclosed_quantity number,
+		order_type varchar(20),
+		product varchar(20),
+		duration varchar(10),
+		disclose_priced_quantity int,
 		
-		max_qty number,
-		total_qty number,
-		total_risk number,
-		total_profit number,
+		max_qty int,
+		total_qty int,
+		total_risk double(19,4),
+		total_profit double(19,4),
 
 
-		min_no_of_orders number,
+		min_no_of_orders int,
 
-		max_open_qty number,
-		max_risk number,
-		max_profit number,
-		max_qty_per_order number,		
+		max_open_price_qty int,
+		max_risk double(19,4),
+		max_profit double(19,4),
+		max_qty_per_order double(19,4),		
 
 
-		net_realised_loss number,
-		net_realised_profit number,
+		net_realised_loss double(19,4),
+		net_realised_profit double(19,4),
 
 		
-		price_gap_between_orders number,
-		price_gap_from_sl number,
-		price_gap_from_trigger_price number,
+		price_gap_between_orders int,
+		price_gap_from_sl double(19,4),
+		price_gap_from_trigger_price DOUBLE(19,4),
 
 
-		current_order_price number,
-		current_order_type varchar,
-		current_order_time varchar,
-		current_order_qty number,
-		current_sl number,
+		current_order_price DOUBLE(19,4),
+		current_order_type varchar(20),
+		current_order_time datetime,
+		current_order_qty int,
+		current_sl double(19,4),
 
 
-		previous_order_price number,
-		previous_order_type varchar,
-		previous_order_time varchar,
-		previous_order_qty number,
-		previous_sl number,
+		previous_order_price DOUBLE(19,4),
+		previous_order_type varchar(20),
+		previous_order_time datetime,
+		previous_order_qty int,
+		previous_sl double(19,4),
 
 
-		next_order_price number,
-		next_order_type varchar,
-		next_order_time varchar,
-		next_order_qty number,
-		next_sl number,
+		next_order_price DOUBLE(19,4),
+		next_order_type varchar(20),
+		next_order_time datetime,
+		next_order_qty int,
+		next_sl double(19,4),
 
-		text_msg varchar);
+		text_msg varchar(100));
 
