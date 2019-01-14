@@ -3,7 +3,7 @@
 import MySQLdb as sql
 
 
-class Db:
+class MyDb:
     def __init__(self,host,user,password,db):
         self.host=host
         self.user=user
@@ -20,6 +20,7 @@ class Db:
             cur.close()
             conn.commit()
             conn.close()
+            print("Success: query run successfully : ",sql_query)
         except:
             cur.close()
             conn.rollback()
@@ -66,7 +67,5 @@ class Db:
 
 
 
-
-
-
 if __name__ == "__main__":
+    pass

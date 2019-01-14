@@ -32,9 +32,9 @@ create table if not exists balance(data_accessed_at timestamp,
 
 /* --$$$$$$$$$$$$$$  postback.py   $$$$$$$$$$$$$$$$$$$ */
 create table if not exists live_feed(data_accessed_at timestamp,
-		date_and_time datetime,
-	    exchange varchar(10),
-	    symbol varchar(25),
+		date_and_time datetime not null,
+	    exchange varchar(10) not null,
+	    symbol varchar(25) not null,
 	    ltp DOUBLE(19,4),
 	    open_price DOUBLE(19,4),
 	    high_price DOUBLE(19,4),
@@ -96,9 +96,9 @@ create table if not exists live_feed(data_accessed_at timestamp,
 		primary key(date_and_time, exchange, symbol));
 
 create table if not exists webhook(data_accessed_at timestamp,
-	         exchange varchar(10),
+	         exchange varchar(10) not null,
 			 token bigint,
-			 symbol varchar(25),
+			 symbol varchar(25) not null,
 			 product varchar(20),
 			 order_type varchar(50),
 			 duration varchar(50),
@@ -125,10 +125,10 @@ create table if not exists webhook(data_accessed_at timestamp,
 
 /* ---$$$$$$$$$$$$$$$ master_contracts.py $$$$$$$$$$$$$$$ */
 create table if not exists master_contracts(data_accessed_at timestamp,
-			exchange varchar(10),
+			exchange varchar(10) not null,
 			token bigint,
 			parent_token bigint,
-			symbol varchar(25),
+			symbol varchar(25) not null,
 			name varchar(50),
 			closing_price DOUBLE(19,4),
 			expiry datetime,
@@ -154,12 +154,14 @@ create table if not exists master_contracts(data_accessed_at timestamp,
 
 /* ---###################################################### */
 /* --$$$$$$$$$$$$$$$  instruments.py  $$$$$$$$$$$$$$$$ */
+/* zerodha - instrument_token	exchange_token	tradingsymbol	name	last_price	expiry	strike	tick_size	lot_size	instrument_type	segment	exchange */
+
 create table if not exists instrument_list(data_accessed_at timestamp,
 		instrument_token bigint,
 		exchange_token bigint,
-		exchange varchar(10),
+		exchange varchar(10) not null,
 		tradingsymbol varchar(25),
-		name varchar(20),
+		name varchar(50),
 		last_price DOUBLE(19,4),
 		expiry datetime,
 
@@ -172,8 +174,8 @@ create table if not exists instrument_list(data_accessed_at timestamp,
 		upstox_kiteconnect varchar(20));
 
 create table if not exists stock_details(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null not null,
 		sector varchar(20),
 		industry varchar(20),
 		group_name varchar(20),
@@ -196,104 +198,111 @@ create table if not exists stock_details(data_accessed_at timestamp,
 /* ----########################################################## */
 /* --$$$$$$$$$$$$$$$$$$ ohlc_downloader.py  $$$$$$$$$$$$$$$$$ */
 create table if not exists ohlc_1min(data_accessed_at timestamp,
-	        exchange varchar(10),
-	        symbol varchar(25),
-	        date_and_time datetime,
+	        exchange varchar(10) not null,
+	        symbol varchar(25) not null,
+	        date_and_time datetime not null,
 	        open_price DOUBLE(19,4),
 	        high_price DOUBLE(19,4),
 	        low_price DOUBLE(19,4),
 	        close_price DOUBLE(19,4),
-	        volume double(19,4),
-	        cp double(19,4));
+	        volume bigint,
+	        cp double(19,4),
+			primary key(date_and_time, exchange, symbol));
 
 
 create table if not exists ohlc_5min(data_accessed_at timestamp,
-	        exchange varchar(10),
-	        symbol varchar(25),
-	        date_and_time datetime,
+	        exchange varchar(10) not null,
+	        symbol varchar(25) not null,
+	        date_and_time datetime not null,
 	        open_price DOUBLE(19,4),
 	        high_price DOUBLE(19,4),
 	        low_price DOUBLE(19,4),
 	        close_price DOUBLE(19,4),
-	        volume double(19,4),
-	        cp double(19,4));
+	        volume bigint,
+	        cp double(19,4),
+			primary key(date_and_time, exchange, symbol));
 
 
 
 
 
 create table if not exists ohlc_15min(data_accessed_at timestamp,
-	        exchange varchar(10),
-	        symbol varchar(25),
-	        date_and_time datetime,
+	        exchange varchar(10) not null,
+	        symbol varchar(25) not null,
+	        date_and_time datetime not null,
 	        open_price DOUBLE(19,4),
 	        high_price DOUBLE(19,4),
 	        low_price DOUBLE(19,4),
 	        close_price DOUBLE(19,4),
-	        volume double(19,4),
-	        cp double(19,4));
+	        volume bigint,
+	        cp double(19,4),
+			primary key(date_and_time, exchange, symbol));
 
 
 
 
 create table if not exists ohlc_60min(data_accessed_at timestamp,
-	        exchange varchar(10),
-	        symbol varchar(25),
-	        date_and_time datetime,
+	        exchange varchar(10) not null,
+	        symbol varchar(25) not null,
+	        date_and_time datetime not null,
 	        open_price DOUBLE(19,4),
 	        high_price DOUBLE(19,4),
 	        low_price DOUBLE(19,4),
 	        close_price DOUBLE(19,4),
-	        volume double(19,4),
-	        cp double(19,4));
+	        volume bigint,
+	        cp double(19,4),
+			primary key(date_and_time, exchange, symbol));
 
 
 
 
 
 create table if not exists ohlc_daily(data_accessed_at timestamp,
-	        exchange varchar(10),
-	        symbol varchar(25),
-	        date_and_time datetime,
+	        exchange varchar(10) not null,
+	        symbol varchar(25) not null,
+	        date_and_time datetime not null,
 	        open_price DOUBLE(19,4),
 	        high_price DOUBLE(19,4),
 	        low_price DOUBLE(19,4),
 	        close_price DOUBLE(19,4),
-	        volume double(19,4),
-	        cp double(19,4));
+	        volume bigint,
+	        cp double(19,4),
+			primary key(date_and_time, exchange, symbol));
 
 
 
 
 create table if not exists ohlc_weekly(data_accessed_at timestamp,
-	        exchange varchar(10),
-	        symbol varchar(25),
-	        date_and_time datetime,
+	        exchange varchar(10) not null,
+	        symbol varchar(25) not null,
+	        date_and_time datetime not null,
 	        open_price DOUBLE(19,4),
 	        high_price DOUBLE(19,4),
 	        low_price DOUBLE(19,4),
 	        close_price DOUBLE(19,4),
-	        volume double(19,4),
-	        cp double(19,4));
+	        volume bigint,
+	        cp double(19,4),
+			primary key(date_and_time, exchange, symbol));
 
 
 
 create table if not exists ohlc_monthly(data_accessed_at timestamp,
-	        exchange varchar(10),
-	        symbol varchar(25),
-	        date_and_time datetime,
+	        exchange varchar(10) not null,
+	        symbol varchar(25) not null,
+	        date_and_time datetime not null,
 	        open_price DOUBLE(19,4),
 	        high_price DOUBLE(19,4),
 	        low_price DOUBLE(19,4),
 	        close_price DOUBLE(19,4),
-	        volume double(19,4),
-	        cp double(19,4));
+	        volume bigint,
+	        cp double(19,4),
+			primary key(date_and_time, exchange, symbol));
 
 
 /* --$$$$$$$$$$$$$$ indicator_data_generator.py $$$$$$$$$$$$$$$$$$$ */
 create table if not exists indicator_data_monthly(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		ltp_or_close_price_price DOUBLE(19,4),
 		sma_50 double(19,4),
 		/* -- sma_50_pct = (ltp_or_close_price_price / sma_50 ) - 1 */
@@ -339,8 +348,8 @@ create table if not exists indicator_data_monthly(data_accessed_at timestamp,
 		lower_arrow_50_predicted double(19,4));
 
 create table if not exists indicator_data_weekly(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		ltp_or_close_price_price DOUBLE(19,4),
 		sma_50 double(19,4),
 		/* -- sma_50_pct = (ltp_or_close_price_price / sma_50 ) - 1 */
@@ -386,8 +395,8 @@ create table if not exists indicator_data_weekly(data_accessed_at timestamp,
 		lower_arrow_50_predicted double(19,4));
 
 create table if not exists indicator_data_daily(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		ltp_or_close_price_price DOUBLE(19,4),
 		sma_50 double(19,4),
 		/* -- sma_50_pct = (ltp_or_close_price_price / sma_50 ) - 1 */
@@ -434,8 +443,8 @@ create table if not exists indicator_data_daily(data_accessed_at timestamp,
 
 
 create table if not exists indicator_data_60min(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		ltp_or_close_price_price DOUBLE(19,4),
 		sma_50 double(19,4),
 		/* -- sma_50_pct = (ltp_or_close_price_price / sma_50 ) - 1 */
@@ -482,8 +491,8 @@ create table if not exists indicator_data_60min(data_accessed_at timestamp,
 
 
 create table if not exists indicator_data_15min(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		ltp_or_close_price_price DOUBLE(19,4),
 		sma_50 double(19,4),
 		/* -- sma_50_pct = (ltp_or_close_price_price / sma_50 ) - 1 */
@@ -531,8 +540,8 @@ create table if not exists indicator_data_15min(data_accessed_at timestamp,
 
 
 create table if not exists indicator_data_5min(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		ltp_or_close_price_price DOUBLE(19,4),
 		sma_50 double(19,4),
 		/* -- sma_50_pct = (ltp_or_close_price_price / sma_50 ) - 1 */
@@ -578,8 +587,8 @@ create table if not exists indicator_data_5min(data_accessed_at timestamp,
 		lower_arrow_50_predicted double(19,4));
 
 create table if not exists indicator_data_1min(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		ltp_or_close_price_price DOUBLE(19,4),
 		sma_50 double(19,4),
 		/* -- sma_50_pct = (ltp_or_close_price_price / sma_50 ) - 1 */
@@ -627,8 +636,8 @@ create table if not exists indicator_data_1min(data_accessed_at timestamp,
 
 /* -- $$$$$$$$$$$$ trend_finder.py $$$$$$$$$$$$$$$$$$$$ */
 create table if not exists trend_monthly(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		sma_50_signal varchar(20),
 		sma_100_signal varchar(20),
 		sma_200_signal varchar(20),
@@ -665,8 +674,8 @@ create table if not exists trend_monthly(data_accessed_at timestamp,
 		);
 
 create table if not exists trend_weekly(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		sma_50_signal varchar(20),
 		sma_100_signal varchar(20),
 		sma_200_signal varchar(20),
@@ -704,8 +713,8 @@ create table if not exists trend_weekly(data_accessed_at timestamp,
 
 
 create table if not exists trend_daily(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		sma_50_signal varchar(20),
 		sma_100_signal varchar(20),
 		sma_200_signal varchar(20),
@@ -742,8 +751,8 @@ create table if not exists trend_daily(data_accessed_at timestamp,
 
 
 create table if not exists trend_60min(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		sma_50_signal varchar(20),
 		sma_100_signal varchar(20),
 		sma_200_signal varchar(20),
@@ -780,8 +789,8 @@ create table if not exists trend_60min(data_accessed_at timestamp,
 
 
 create table if not exists trend_15min(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		sma_50_signal varchar(20),
 		sma_100_signal varchar(20),
 		sma_200_signal varchar(20),
@@ -819,8 +828,8 @@ create table if not exists trend_15min(data_accessed_at timestamp,
 
 
 create table if not exists trend_5min(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		sma_50_signal varchar(20),
 		sma_100_signal varchar(20),
 		sma_200_signal varchar(20),
@@ -857,8 +866,8 @@ create table if not exists trend_5min(data_accessed_at timestamp,
 		);
 
 create table if not exists trend_1min(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		sma_50_signal varchar(20),
 		sma_100_signal varchar(20),
 		sma_200_signal varchar(20),
@@ -896,8 +905,8 @@ create table if not exists trend_1min(data_accessed_at timestamp,
 
 /* -- $$$$$$$$$$$$$$$ trade_finder.py $$$$$$$$$$$$$$$$$$$ */
 create table if not exists signals(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		price double(19,4),
 		atr double(19,4),
 		/* --sma50 sma100 sma100 r1 r2 r3 s1 s2 s3 */
@@ -927,9 +936,9 @@ create table if not exists holdings (data_accessed_at timestamp,
 
 
 create table if not exists positions (data_accessed_at timestamp,
-	        exchange varchar(10),
+	        exchange varchar(10) not null,
 			product varchar(20),
-			symbol varchar(25),
+			symbol varchar(25) not null,
 			token bigint,
 			buy_amount double(19,4),
             sell_amount double(19,4),
@@ -950,9 +959,9 @@ create table if not exists positions (data_accessed_at timestamp,
 
 
 create table if not exists trade_book(data_accessed_at timestamp,
-            exchange varchar(10),
+            exchange varchar(10) not null,
             token bigint,
-            symbol varchar(25),
+            symbol varchar(25) not null,
             product varchar(20),
             order_type varchar(20),
             transaction_type varchar(20),
@@ -965,8 +974,8 @@ create table if not exists trade_book(data_accessed_at timestamp,
             trade_id bigint);
 
 create table if not exists open_price_trades(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		product varchar(20),
 		order_type varchar(20),
 		transaction_type varchar(20),
@@ -975,8 +984,8 @@ create table if not exists open_price_trades(data_accessed_at timestamp,
 		traded_price DOUBLE(19,4));
 
 create table if not exists close_priced_trades(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		product varchar(20),
 		order_type varchar(20),
 		traded_quantity int,
@@ -989,9 +998,9 @@ create table if not exists close_priced_trades(data_accessed_at timestamp,
 
 /* -- $$$$$$$$$$$$$$$$ order_analysis.py $$$$$$$$$$ */
 create table if not exists order_book(data_accessed_at timestamp,
-	        exchange varchar(10),
+	        exchange varchar(10) not null,
             token bigint,
-            symbol varchar(25),
+            symbol varchar(25) not null,
             product varchar(20),
             order_type varchar(20),
             duration varchar(10),
@@ -1018,8 +1027,8 @@ create table if not exists order_book(data_accessed_at timestamp,
 
 
 create table if not exists open_price_orders(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		transaction_type varchar(20),
 		qty int,
 		price DOUBLE(19,4),
@@ -1035,8 +1044,8 @@ create table if not exists open_price_orders(data_accessed_at timestamp,
 );
 
 create table if not exists pending_orders(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		transaction_type varchar(20),
 		qty int,
 		price DOUBLE(19,4),
@@ -1053,8 +1062,8 @@ create table if not exists pending_orders(data_accessed_at timestamp,
 
 
 create table if not exists sl_orders(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		transaction_type varchar(20),
 		qty int,
 		price DOUBLE(19,4),
@@ -1071,8 +1080,8 @@ create table if not exists sl_orders(data_accessed_at timestamp,
 
 
 create table if not exists target_orders(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		transaction_type varchar(20),
 		qty int,
 		price DOUBLE(19,4),
@@ -1175,8 +1184,8 @@ create table if not exists trade_methodology (data_accessed_at timestamp,
 
 
 create table if not exists watchlist(data_accessed_at timestamp,
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		/* --whitelist or blacklist */
 		category varchar(120),
 		/* --exchange_symbol = exchange + '_' + symbol */
@@ -1189,14 +1198,14 @@ create table if not exists watchlist(data_accessed_at timestamp,
 		price DOUBLE(19,4),
 		sector varchar(20),
 		industry varchar(20),
-		mcap double(19,4),
-		volume double(19,4));
+		mcap double(19,2),
+		volume bigint);
 
 
 create table if not exists order_management (data_accessed_at timestamp,
 		
-		exchange varchar(10),
-		symbol varchar(25),
+		exchange varchar(10) not null,
+		symbol varchar(25) not null,
 		transaction_type varchar(20),
 		
 		order_type varchar(20),
