@@ -13,7 +13,7 @@ create table if not exists  login_details(data_accessed_at timestamp,
  /* --$$$$$$$$$$$$$  profile_and_balance.py $$$$$$$$$$$$$$$ */
 create table if not exists profile(data_accessed_at timestamp,
 			 client_id varchar(10) not null,
-			 name varchar(20) not null,
+			 name varchar(50) not null,
 			 email varchar(50),
 			 phone bigint,
 			 exchange_enabled varchar(50),
@@ -175,7 +175,7 @@ create table if not exists instrument_list(data_accessed_at timestamp,
 
 create table if not exists stock_details(data_accessed_at timestamp,
 		exchange varchar(10) not null,
-		symbol varchar(25) not null not null,
+		symbol varchar(30) not null,
 		sector varchar(20),
 		industry varchar(20),
 		group_name varchar(20),
@@ -193,7 +193,8 @@ create table if not exists stock_details(data_accessed_at timestamp,
 		anulised_volatilty double(19,4),
 		Client_Wise_Position_Limits double(19,4),
 		Market_Wide_Position_Limits	double(19,4),
-		Settlement_price DOUBLE(19,4));
+		Settlement_price DOUBLE(19,4),
+		primary key(exchange, symbol));
 
 /* ----########################################################## */
 /* --$$$$$$$$$$$$$$$$$$ ohlc_downloader.py  $$$$$$$$$$$$$$$$$ */
