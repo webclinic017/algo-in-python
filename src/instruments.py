@@ -31,7 +31,10 @@ def download_instrument_list_from_kite():
     return instrument
 
 
+
 def insert_into_instrument_list(instrument):
+    conn = sql.connect(host,user,password,db)
+    cur = conn.cursor()
     for inst in instrument:
         if inst['expiry'] =="":
             inst['expiry'] = "2015-01-01 12:02:28"
@@ -41,18 +44,20 @@ def insert_into_instrument_list(instrument):
         val = tuple(inst.values())
         sql_query = """insert into  instrument_list ({}) values {} ;""".format(col,val)
         try:
-            conn = sql.connect(host,user,password,db)
-            cur = conn.cursor()
+
             cur.execute(sql_query)
-            cur.close()
-            conn.commit()
-            conn.close()
-            print("Success: query run successfully : ",sql_query)
+
+            # print("Success: query run successfully : ",sql_query)
         except:
-            cur.close()
-            conn.rollback()
-            conn.close()
-            print("Error: commad failed : ",sql_query)
+            # print("Error: commad failed : ",sql_query)
+            continue
+    cur.close()
+    conn.commit()
+    conn.close()
+
+instrument_list = download_instrument_list_from_kite()
+insert_into_instrument_list(instrument_list)
+
 
 def update_and_insert_nifty_stock():
     with open('./nifty.csv') as csvfile:

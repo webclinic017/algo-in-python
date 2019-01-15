@@ -1,6 +1,7 @@
 {
-    "params":{
-        "local_server":true,
-        "local_uri":""
+    "params": {
+        "local_server": true,
+        "local_uri": "",
+        "dbname": "test"
     }
 }

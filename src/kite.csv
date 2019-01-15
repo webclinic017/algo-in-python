@@ -1,4 +1,4 @@
-instrument_token,exchange_token,tradingsymbol,name,last_price,expiry,strike,tick_size,lot_size,instrument_type,segment,exchange
+instrument_token,exchange_token,symbol,name,last_price,expiry,strike,tick_size,lot_size,instrument_type,segment,exchange
 2371585,9264,ARROWGREEN-BE,,0,,0,0.05,1,EQ,NSE,NSE
 2639361,10310,MAJESCO,MAJESCO,0,,0,0.05,1,EQ,NSE,NSE
 861953,3367,DHFL-NV,,0,,0,0.01,1,EQ,NSE,NSE
